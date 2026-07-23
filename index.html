@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>广州·珠海·东莞·佛山 社保公积金政策汇编</title>
+<style>
+  :root {
+    --c-gz: #1a5276; --c-gz-light: #d4e6f1;
+    --c-zh: #1e8449; --c-zh-light: #d5f5e3;
+    --c-dg: #6c3483; --c-dg-light: #e8daef;
+    --c-fs: #b9770e; --c-fs-light: #fdebd0;
+    --bg: #f7f8fa; --card: #fff; --text: #2c3e50;
+    --text-muted: #7f8c8d; --border: #e8ecf0;
+    --accent: #3498db; --warn: #e74c3c; --good: #27ae60;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif; background:var(--bg); color:var(--text); line-height:1.6; }
+
+  /* Mode Toggle */
+  .mode-switch {
+    position: fixed; top: 12px; right: 20px; z-index: 200;
+    display: flex; background: #fff; border-radius: 24px; 
+    box-shadow: 0 2px 12px rgba(0,0,0,0.1); overflow: hidden;
+  }
+  .mode-btn {
+    padding: 8px 18px; font-size: 13px; font-weight: 600; cursor: pointer;
+    border: none; background: none; color: var(--text-muted); transition: all 0.2s;
+  }
+  .mode-btn.active { background: #1a1a2e; color: #fff; }
+  .mode-btn:hover:not(.active) { color: #1a1a2e; }
+
+  /* Top Bar */
+  .top-bar {
+    background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
+    color: #fff; padding: 36px 0; text-align: center;
+  }
+  .top-bar h1 { font-size: 28px; font-weight: 700; letter-spacing: 1px; }
+  .top-bar .sub { font-size: 13px; opacity: 0.7; margin-top: 6px; }
+
+  /* Sticky Nav */
+  .nav-bar {
+    position: sticky; top: 0; z-index: 100; background: #fff;
+    border-bottom: 1px solid var(--border); display: flex; justify-content: center; gap: 4px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  }
+  .nav-bar a {
+    display: inline-block; padding: 14px 22px; font-size: 14px; font-weight: 600;
+    color: var(--text-muted); text-decoration: none; border-bottom: 3px solid transparent;
+    transition: all 0.2s;
+  }
+  .nav-bar a:hover, .nav-bar a.active { color: var(--accent); border-bottom-color: var(--accent); }
+
+  .container { max-width: 1100px; margin: 0 auto; padding: 24px 20px; }
+
+  .section-title {
+    font-size: 20px; font-weight: 700; color: #1a1a2e; margin: 40px 0 20px;
+    padding-bottom: 10px; border-bottom: 2px solid #e0e0e0;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .section-title::before { content:''; display:inline-block; width:4px; height:22px; background:var(--accent); border-radius:2px; }
+
+  /* Dashboard Cards */
+  .dashboard-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-bottom:32px; }
+  @media(max-width:900px){.dashboard-grid{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:560px){.dashboard-grid{grid-template-columns:1fr}}
+  .dash-card {
+    background:#fff; border-radius:12px; padding:20px; box-shadow:0 2px 8px rgba(0,0,0,0.05);
+    border-top:4px solid var(--border); transition:transform 0.15s;
+  }
+  .dash-card:hover{transform:translateY(-2px);box-shadow:0 4px 16px rgba(0,0,0,0.08)}
+  .dash-card.gz{border-top-color:var(--c-gz)} .dash-card.zh{border-top-color:var(--c-zh)}
+  .dash-card.dg{border-top-color:var(--c-dg)} .dash-card.fs{border-top-color:var(--c-fs)}
+  .dash-card .city-name{font-size:18px;font-weight:700;margin-bottom:12px}
+  .dash-card .metric{display:flex;justify-content:space-between;font-size:13px;padding:5px 0;border-bottom:1px solid #f5f5f5}
+  .dash-card .metric:last-child{border:none}
+  .dash-card .metric .label{color:var(--text-muted)}
+  .dash-card .metric .value{font-weight:600}
+  .dash-card .highlight{background:#fef9e7;border-radius:4px;padding:2px 6px;margin:-2px -6px}
+
+  /* Cost Table */
+  .cost-table{width:100%;border-collapse:collapse;font-size:14px;margin:12px 0;background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.05)}
+  .cost-table th{background:#1a1a2e;color:#fff;padding:12px 14px;text-align:center;font-weight:500}
+  .cost-table td{padding:11px 14px;text-align:center;border-bottom:1px solid var(--border)}
+  .cost-table tr:last-child td{border:none;font-weight:700;background:#fef9e7}
+  .rank{display:inline-block;width:22px;height:22px;line-height:22px;border-radius:50%;font-size:12px;color:#fff;font-weight:700}
+  .rank-1{background:var(--good)} .rank-2{background:var(--accent)} .rank-3{background:#f39c12} .rank-4{background:var(--warn)}
+
+  /* City Tabs */
+  .city-tabs{display:flex;gap:0;margin-bottom:0;border-bottom:2px solid var(--border)}
+  .city-tab{padding:12px 24px;font-size:15px;font-weight:600;cursor:pointer;border:none;background:none;color:var(--text-muted);border-bottom:3px solid transparent;margin-bottom:-2px;transition:all 0.2s}
+  .city-tab.active{color:#1a1a2e;border-bottom-color:var(--accent)}
+  .city-tab:hover{color:#1a1a2e}
+  .city-panel{display:none;background:#fff;border-radius:0 0 12px 12px;padding:28px;box-shadow:0 2px 8px rgba(0,0,0,0.05)}
+  .city-panel.active{display:block}
+
+  /* Collapsible */
+  .collapsible{margin-bottom:16px;border:1px solid var(--border);border-radius:8px;overflow:hidden}
+  .collapsible-header{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;background:#fafbfc;cursor:pointer;font-weight:600;font-size:15px;user-select:none;transition:background 0.2s}
+  .collapsible-header:hover{background:#f0f2f5}
+  .collapsible-header .arrow{transition:transform 0.25s;font-size:12px;color:var(--text-muted)}
+  .collapsible.open .collapsible-header .arrow{transform:rotate(180deg)}
+  .collapsible-body{max-height:0;overflow:hidden;transition:max-height 0.35s ease}
+  .collapsible.open .collapsible-body{max-height:3000px}
+  .inner-table{width:100%;border-collapse:collapse;font-size:13px;margin:0}
+  .inner-table th{background:#f0f2f5;padding:9px 10px;text-align:center;font-weight:600;color:#555;font-size:12px}
+  .inner-table td{padding:8px 10px;text-align:center;border-bottom:1px solid #f0f0f0}
+  .inner-pad{padding:16px 18px}
+  .tag{display:inline-block;padding:1px 8px;border-radius:3px;font-size:11px;font-weight:600}
+  .tag-up{background:#fff0f0;color:#e74c3c} .tag-down{background:#f0fff0;color:var(--good)} .tag-same{background:#f0f0f0;color:#888}
+  .alert{padding:10px 14px;border-radius:6px;font-size:13px;margin:12px 0;display:flex;gap:8px;align-items:flex-start}
+  .alert-warn{background:#fef9e7;border-left:4px solid #f39c12}
+  .alert-info{background:#eaf2f8;border-left:4px solid var(--accent)}
+  .link-row{font-size:12px;color:var(--text-muted);padding:8px 18px;background:#fafbfc;border-top:1px solid #f0f0f0}
+  .link-row a{color:var(--accent);text-decoration:none;margin-right:12px}
+  .link-row a:hover{text-decoration:underline}
+  .note-inline{font-size:12px;color:var(--text-muted);margin-top:6px}
+
+  /* Tips Grid */
+  .tips-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+  @media(max-width:700px){.tips-grid{grid-template-columns:1fr}}
+  .tip-card{background:#fff;border-radius:10px;padding:20px;box-shadow:0 2px 8px rgba(0,0,0,0.05)}
+  .tip-card h4{font-size:15px;margin-bottom:10px;color:#1a1a2e}
+  .tip-card p,.tip-card li{font-size:13px;line-height:1.8}
+  .tip-card ul{padding-left:18px}
+  .em{font-weight:700;color:var(--warn)}
+
+  /* ===== DETAIL MODE STYLES ===== */
+  .detail-mode { display: none; }
+  body.show-detail .compact-mode { display: none; }
+  body.show-detail .detail-mode { display: block; }
+  body.show-detail .mode-switch { display: none; }
+  body.show-detail .nav-bar { display: none; }
+
+  .detail-section{background:#fff;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,0.06);margin-bottom:30px;overflow:hidden}
+  .detail-city-header{background:var(--accent);color:#fff;padding:16px 24px;font-size:20px;font-weight:bold;display:flex;align-items:center;gap:10px}
+  .detail-city-body{padding:24px}
+  .detail-city-body h3{color:#1a1a2e;font-size:17px;margin:20px 0 12px;padding-bottom:6px;border-bottom:2px solid var(--accent);display:inline-block}
+  .detail-city-body h3.first{margin-top:0}
+  .detail-city-body table{width:100%;border-collapse:collapse;margin:12px 0 20px;font-size:13px}
+  .detail-city-body th{background:#1a1a2e;color:#fff;padding:10px 8px;text-align:center;font-weight:500}
+  .detail-city-body td{padding:8px;text-align:center;border:1px solid var(--border)}
+  .detail-city-body tr:nth-child(even){background:#f8f9fa}
+  .detail-city-body .highlight-row{background:#fffde7!important;font-weight:bold}
+  .detail-note{background:#f0f4ff;border-left:4px solid var(--accent);padding:10px 14px;margin:10px 0;font-size:13px;border-radius:0 4px 4px 0}
+  .detail-warn{background:#fff3e0;border-left:4px solid #e65100;padding:10px 14px;margin:10px 0;font-size:13px;border-radius:0 4px 4px 0}
+  .detail-link{color:var(--accent);word-break:break-all;font-size:12px}
+  .detail-ops{background:#fff;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,0.06);padding:24px;margin-bottom:30px}
+  .detail-ops h2{color:#1a1a2e;font-size:22px;margin-bottom:16px;padding-bottom:8px;border-bottom:2px solid var(--accent)}
+  .step-list{counter-reset:step;padding:0}
+  .step-list li{list-style:none;padding:8px 0 8px 32px;position:relative;font-size:14px}
+  .step-list li::before{counter-increment:step;content:counter(step);position:absolute;left:0;top:8px;width:22px;height:22px;background:#1a1a2e;color:#fff;border-radius:50%;text-align:center;line-height:22px;font-size:12px}
+  .detail-supplement{background:#fff;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,0.06);padding:24px;margin-bottom:30px}
+  .detail-supplement h2{color:var(--warn);font-size:22px;margin-bottom:16px;padding-bottom:8px;border-bottom:2px solid var(--warn)}
+  .card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-top:16px}
+  .info-card{background:#f0f4ff;border-radius:8px;padding:16px}
+  .info-card h4{color:#1a1a2e;margin-bottom:8px;font-size:15px}
+  .info-card p,.info-card ul{font-size:13px;margin:0}
+  .info-card ul{padding-left:18px}
+  .info-card li{margin-bottom:4px}
+
+  /* Detail Mode Top Bar */
+  .detail-top {
+    background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
+    color: #fff; padding: 36px 0; text-align: center; margin-bottom: 24px;
+  }
+  .detail-top h1 { font-size: 28px; font-weight: 700; }
+  .detail-top .sub { font-size: 13px; opacity: 0.7; margin-top: 6px; }
+  .detail-top .back-btn {
+    display: inline-block; margin-top: 14px; padding: 8px 24px; 
+    background: rgba(255,255,255,0.15); color: #fff; border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 20px; cursor: pointer; font-size: 13px; transition: all 0.2s;
+  }
+  .detail-top .back-btn:hover { background: rgba(255,255,255,0.25); }
+
+  .footer{text-align:center;color:var(--text-muted);font-size:12px;padding:30px 0}
+
+  @media(max-width:768px){
+    .container{padding:10px}
+    .detail-city-body table{font-size:11px}
+    .detail-city-body th,.detail-city-body td{padding:6px 4px}
+    .card-grid{grid-template-columns:1fr}
+    .city-tab{padding:10px 14px;font-size:13px}
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== MODE SWITCH ===== -->
+<div class="mode-switch">
+  <button class="mode-btn active" onclick="switchMode('compact')">速览</button>
+  <button class="mode-btn" onclick="switchMode('detail')">详细</button>
+</div>
+
+<!-- ========================================== -->
+<!-- ===== COMPACT MODE ===== -->
+<!-- ========================================== -->
+<div class="compact-mode">
+
+<div class="top-bar">
+  <h1>广州 · 珠海 · 东莞 · 佛山</h1>
+  <div class="sub">社保公积金政策速查手册 &nbsp;|&nbsp; 适用期间 2025.07-2026.06 &nbsp;|&nbsp; 更新于 2026.07.23</div>
+</div>
+
+<div class="nav-bar">
+  <a href="#dash" class="active">总览</a>
+  <a href="#cost">成本对比</a>
+  <a href="#cities">四城详情</a>
+  <a href="#tips">实操建议</a>
+  <a href="#links">官方链接</a>
+</div>
+
+<div class="container">
+
+<!-- 一、总览仪表盘 -->
+<div id="dash" class="section-title">一、四城核心指标速览</div>
+<div class="dashboard-grid">
+  <div class="dash-card gz">
+    <div class="city-name" style="color:var(--c-gz)">广州</div>
+    <div class="metric"><span class="label">养老基数</span><span class="value">5,510 – 27,549</span></div>
+    <div class="metric"><span class="label">医保基数</span><span class="value">6,234 – 31,170</span></div>
+    <div class="metric"><span class="label">最低工资</span><span class="value highlight">2,500</span></div>
+    <div class="metric"><span class="label">公积金上限</span><span class="value">41,697 × 12%×2 = <strong style="color:var(--c-gz)">10,007</strong></span></div>
+    <div class="metric"><span class="label">企业最低成本</span><span class="value" style="color:var(--warn)">≈2,154/月</span></div>
+  </div>
+  <div class="dash-card zh">
+    <div class="city-name" style="color:var(--c-zh)">珠海</div>
+    <div class="metric"><span class="label">养老基数</span><span class="value">4,775 – 27,549</span></div>
+    <div class="metric"><span class="label">医保基数</span><span class="value">4,775 – 27,549</span></div>
+    <div class="metric"><span class="label">最低工资</span><span class="value">2,080</span></div>
+    <div class="metric"><span class="label">公积金上限</span><span class="value">36,279 × 12%×2 = <strong>8,706</strong></span></div>
+    <div class="metric"><span class="label">企业最低成本</span><span class="value" style="color:var(--c-zh)">≈1,737/月</span></div>
+  </div>
+  <div class="dash-card dg">
+    <div class="city-name" style="color:var(--c-dg)">东莞</div>
+    <div class="metric"><span class="label">养老基数</span><span class="value">4,775 – 27,549</span></div>
+    <div class="metric"><span class="label">医保基数</span><span class="value">4,775 – 27,549</span></div>
+    <div class="metric"><span class="label">最低工资</span><span class="value">2,080</span></div>
+    <div class="metric"><span class="label">公积金上限</span><span class="value">27,391 × 12%×2 = <strong>6,574</strong></span></div>
+    <div class="metric"><span class="label">企业最低成本</span><span class="value" style="color:var(--good)">≈1,520/月 ★最低</span></div>
+  </div>
+  <div class="dash-card fs">
+    <div class="city-name" style="color:var(--c-fs)">佛山</div>
+    <div class="metric"><span class="label">养老基数</span><span class="value">4,775 – 27,549</span></div>
+    <div class="metric"><span class="label">医保基数</span><span class="value highlight" style="color:var(--c-fs)">4,669 – 9,660 ★低</span></div>
+    <div class="metric"><span class="label">最低工资</span><span class="value">2,080</span></div>
+    <div class="metric"><span class="label">公积金上限</span><span class="value">31,395 × 12%×2 = <strong>7,534</strong></span></div>
+    <div class="metric"><span class="label">企业最低成本</span><span class="value">≈1,729/月</span></div>
+  </div>
+</div>
+
+<!-- 二、企业成本对比 -->
+<div id="cost" class="section-title">二、四城企业最低成本横向对比</div>
+<div style="overflow-x:auto;">
+<table class="cost-table">
+  <tr><th>排名</th><th>城市</th><th>养老(单位+个人)</th><th>医保(含生育)</th><th>失业</th><th>工伤(最低)</th><th>公积金(5%双边)</th><th style="background:#e74c3c;color:#fff">企业总成本/月</th></tr>
+  <tr><td><span class="rank rank-4">4</span></td><td style="font-weight:700;color:var(--c-gz)">广州</td><td>1,322</td><td>552</td><td>25</td><td>5</td><td>250</td><td style="font-weight:700;color:var(--warn)">≈2,154</td></tr>
+  <tr><td><span class="rank rank-3">3</span></td><td style="font-weight:700;color:var(--c-zh)">珠海</td><td>1,146</td><td>358</td><td>21</td><td>4</td><td>208</td><td>≈1,737</td></tr>
+  <tr><td><span class="rank rank-2">2</span></td><td style="font-weight:700;color:var(--c-fs)">佛山</td><td>1,146</td><td>350</td><td>21</td><td>4</td><td>208</td><td>≈1,729</td></tr>
+  <tr><td><span class="rank rank-1">1</span></td><td style="font-weight:700;color:var(--c-dg)">东莞 ★</td><td>1,146</td><td>141</td><td>21</td><td>4</td><td>208</td><td style="font-weight:700;color:var(--good)">≈1,520</td></tr>
+</table>
+</div>
+<div class="note-inline">按各市最低基数、最低比例、最低档医保测算。企业总成本 = 单位+个人全部缴费合计。</div>
+
+<!-- 三、四城详情 -->
+<div id="cities" class="section-title">三、四城逐城详情（点击展开各险种）</div>
+<div class="city-tabs">
+  <button class="city-tab active" onclick="switchCity('gz')">广州</button>
+  <button class="city-tab" onclick="switchCity('zh')">珠海</button>
+  <button class="city-tab" onclick="switchCity('dg')">东莞</button>
+  <button class="city-tab" onclick="switchCity('fs')">佛山</button>
+</div>
+
+<!-- 广州 Panel -->
+<div class="city-panel active" id="panel-gz">
+  <div class="collapsible open">
+    <div class="collapsible-header" onclick="this.parentElement.classList.toggle('open')">养老保险 &nbsp;<span style="font-size:12px;color:var(--text-muted)">费率：单位16% + 个人8%</span><span class="arrow">▼</span></div>
+    <div class="collapsible-body"><div class="inner-pad">
+      <table class="inner-table">
+        <tr><th>版本</th><th>基数下限</th><th>基数上限</th><th>单位最低缴费</th><th>个人最低缴费</th><th>灵活就业最低(20%)</th></tr>
+        <tr><td>2025.07-2026.06</td><td>5,510</td><td>27,549</td><td>881.6</td><td>440.8</td><td>1,102</td></tr>
+        <tr><td>2024.07-2025.06</td><td>5,500</td><td>27,501</td><td>880</td><td>440</td><td>1,100</td></tr>
+      </table>
+    </div>
+    <div class="link-row">来源：<a href="https://hrss.gd.gov.cn/zwgk/xxgkml/bmwj/qtwj/shbz/content/mpost_4789618.html" target="_blank">粤人社发〔2025〕32号</a> <a href="https://hrss.gd.gov.cn/zwgk/gsgg/content/post_4615619.html" target="_blank">粤人社发〔2024〕33号</a></div>
+    </div>
+  </div>
+  <div class="collapsible">
+    <div class="collapsible-header" onclick="this.parentElement.classList.toggle('open')">医疗保险（含生育） &nbsp;<span style="color:var(--warn);font-size:12px;">⚠ 2026年费率恢复至6.85%</span><span class="arrow">▼</span></div>
+    <div class="collapsible-body"><div class="inner-pad">
+      <table class="inner-table">
+        <tr><th>版本</th><th>基数下限</th><th>基数上限</th><th>单位费率(含生育)</th><th>个人费率</th><th>单位最低缴费</th><th>个人最低缴费</th></tr>
+        <tr style="background:#fef9e7;"><td>2026.01-2026.12</td><td>6,234</td><td>31,170</td><td><strong>6.85%</strong></td><td>2%</td><td><strong>427.03</strong></td><td>124.68</td></tr>
+        <tr><td>2025.01-2025.12</td><td>6,236</td><td>31,179</td><td>5.35%</td><td>2%</td><td>333.63</td><td>124.72</td></tr>
+      </table>
+      <div class="alert alert-warn">⚠ 阶段性降费已到期，单位费率从4.5%恢复至6%，企业每人年增成本≈1,121元，请更新预算。</div>
+    </div>
+    <div class="link-row">来源：<a href="https://www.gz.gov.cn/zwgk/zfxxgkml/sylbzj/gkmlpt/content/7/7397/post_7397649.html" target="_blank">穗医保发〔2024〕5号</a> <a href="https://www.gz.gov.cn/gzjg/gzsylbzj/" target="_blank">广州市医保局</a></div>
+    </div>
+  </div>
+  <div class="collapsible">
+    <div class="collapsible-header" onclick="this.parentElement.classList.toggle('open')">失业保险 &nbsp;<span style="font-size:12px;color:var(--text-muted)">费率：单位0.8% + 个人0.2%</span><span class="arrow">▼</span></div>
+    <div class="collapsible-body"><div class="inner-pad">
+      <table class="inner-table"><tr><th>基数上限</th><th>基数下限(最低工资)</th><th>失业金标准</th><th>单位最低缴费</th><th>个人最低缴费</th></tr><tr><td>41,112</td><td>2,500</td><td>2,250/月</td><td>20</td><td>5</td></tr></table>
+    </div><div class="link-row">来源：<a href="https://znhd.neimenggu.chinatax.gov.cn:8443/znhdzsknsrd/detail?id=666220" target="_blank">广东省税务局</a></div></div>
+  </div>
+  <div class="collapsible">
+    <div class="collapsible-header" onclick="this.parentElement.classList.toggle('open')">工伤保险 &nbsp;<span style="font-size:12px;color:var(--text-muted)">八档 0.2%~1.4%，个人不缴费</span><span class="arrow">▼</span></div>
+    <div class="collapsible-body"><div class="inner-pad"><table class="inner-table"><tr><th>一类</th><th>二类</th><th>三类</th><th>四类</th><th>五类</th><th>六类</th><th>七类</th><th>八类</th></tr><tr><td>0.2%</td><td>0.4%</td><td>0.6%</td><td>0.8%</td><td>0.9%</td><td>1.0%</td><td>1.2%</td><td>1.4%</td></tr></table></div></div>
+  </div>
+  <div class="collapsible">
+    <div class="collapsible-header" onclick="this.parentElement.classList.toggle('open')">住房公积金 &nbsp;<span style="font-size:12px;color:var(--text-muted)">比例 5%-12%</span><span class="arrow">▼</span></div>
+    <div class="collapsible-body"><div class="inner-pad">
+      <table class="inner-table">
+        <tr><th>版本</th><th>基数下限</th><th>基数上限</th><th>双边最低</th><th>双边最高(12%×2)</th></tr>
+        <tr><td>2026.07-2027.06</td><td>2,500</td><td>41,697</td><td>250</td><td><strong>10,007</strong></td></tr>
+        <tr><td>2025.07-2026.06</td><td>2,500</td><td>39,912</td><td>250</td><td>9,578</td></tr>
+      </table>
+    </div><div class="link-row">来源：<a href="https://gjj.gz.gov.cn/gg/tzgg/content/post_10879601.html" target="_blank">广州公积金中心</a></div></div>
+  </div>
+</div>
+
+<!-- 珠海 Panel -->
+<div class="city-panel" id="panel-zh">
+  <div class="collapsible open">
+    <div class="collapsible-header" onclick="this.parentElement.classList.toggle('open')">养老保险 &nbsp;<span style="font-size:12px;color:var(--text-muted)">费率：单位16% + 个人8%</span><span class="arrow">▼</span></div>
+    <div class="collapsible-body"><div class="inner-pad">
+      <table class="inner-table"><tr><th>版本</th><th>基数下限</th><th>基数上限</th><th>单位最低缴费</th><th>个人最低缴费</th><th>灵活就业最低(20%)</th></tr><tr><td>2025.07-2026.06</td><td>4,775</td><td>27,549</td><td>764</td><td>382</td><td>955</td></tr><tr><td>2024.07-2025.06</td><td>4,767</td><td>27,501</td><td>762.72</td><td>381.36</td><td>953.4</td></tr></table>
+    </div><div class="link-row">来源：<a href="https://zhrsj.zhuhai.gov.cn/zc/zxwj/content/post_3848209.html" target="_blank">珠海市人社局</a></div></div>
+  </div>
+  <div class="collapsible">
+    <div class="collapsible-header" onclick="this.parentElement.classList.toggle('open')">医疗保险（两档制） &nbsp;<span style="font-size:12px;color:var(--c-zh)">★ 统账结合 / 单建统筹</span><span class="arrow">▼</span></div>
+    <div class="collapsible-body"><div class="inner-pad">
+      <table class="inner-table"><tr><th>类型</th><th>基数 2026</th><th>单位费率(含生育0.5%)</th><th>个人费率</th><th>灵活就业费率</th></tr><tr><td>统账结合（一档，有个账）</td><td>4,775 – 27,549</td><td>6%</td><td>1.5%</td><td>7%</td></tr><tr><td>单建统筹（二档，无个账）</td><td>4,775 – 27,549</td><td>3%</td><td>0%</td><td>2.5%</td></tr></table>
+      <div class="alert alert-info">💡 2026年起医保基数与养老基数统一。二档费率低至3%，适合成本敏感型企业。退休需一档满10年。</div>
+    </div><div class="link-row">来源：<a href="https://www.zhuhai.gov.cn/ylbzj/gkmlpt/content/3/3861/post_3861172.html" target="_blank">珠海市医保局</a></div></div>
+  </div>
+  <div class="collapsible">
+    <div class="collapsible-header" onclick="this.parentElement.classList.toggle('open')">失业保险 &nbsp;<span style="font-size:12px;color:var(--text-muted)">费率：单位0.8% + 个人0.2%</span><span class="arrow">▼</span></div>
+    <div class="collapsible-body"><div class="inner-pad"><table class="inner-table"><tr><th>基数上限</th><th>基数下限</th><th>失业金标准</th><th>个人最低缴费</th></tr><tr><td>34,926</td><td>2,080</td><td>1,872/月</td><td>4.16</td></tr></table></div></div>
+  </div>
+  <div class="collapsible">
+    <div class="collapsible-header" onclick="this.parentElement.classList.toggle('open')">工伤保险 &nbsp;<span style="font-size:12px;color:var(--text-muted)">八档 0.2%~1.4%，个人不缴费</span><span class="arrow">▼</span></div>
+    <div class="collapsible-body"><div class="inner-pad"><table class="inner-table"><tr><th>一类</th><th>二类</th><th>三类</th><th>四类</th><th>五类</th><th>六类</th><th>七类</th><th>八类</th></tr><tr><td>0.2%</td><td>0.4%</td><td>0.6%</td><td>0.8%</td><td>0.9%</td><td>1.0%</td><td>1.2%</td><td>1.4%</td></tr></table></div></div>
+  </div>
+  <div class="collapsible">
+    <div class="collapsible-header" onclick="this.parentElement.classList.toggle('open')">住房公积金 &nbsp;<span style="font-size:12px;color:var(--text-muted)">比例 5%-12%</span><span class="arrow">▼</span></div>
+    <div class="collapsible-body"><div class="inner-pad"><table class="inner-table"><tr><th>版本</th><th>基数下限</th><th>基数上限</th><th>双边最低</th><th>双边最高</th></tr><tr><td>2026.07-2027.06</td><td>2,080</td><td>36,279</td><td>208</td><td><strong>8,706</strong></td></tr></table></div><div class="link-row">来源：<a href="https://m.zh.bendibao.com/live/105791.shtm" target="_blank">珠海市公积金管委会</a></div></div>
+  </div>
+</div>
+
+<!-- 东莞 Panel -->
+<div class="city-panel" id="panel-dg">
+  <div class="collapsible open">
+    <div class="collapsible-header" onclick="this.parentElement.classList.toggle('open')">养老保险 &nbsp;<span style="font-size:12px;color:var(--text-muted)">费率：单位16% + 个人8%</span><span class="arrow">▼</span></div>
+    <div class="collapsible-body"><div class="inner-pad"><table class="inner-table"><tr><th>版本</th><th>基数下限</th><th>基数上限</th><th>单位最低缴费</th><th>个人最低缴费</th><th>灵活就业最低(20%)</th></tr><tr><td>2025.07-2026.06</td><td>4,775</td><td>27,549</td><td>764</td><td>382</td><td>955</td></tr><tr><td>2024.07-2025.06</td><td>4,767</td><td>27,501</td><td>762.72</td><td>381.36</td><td>953.4</td></tr></table></div><div class="link-row">来源：<a href="https://dghrss.dg.gov.cn/gkmlpt/content/4/4455/mpost_4455457.html" target="_blank">东莞市人社局</a></div></div>
+  </div>
+  <div class="collapsible">
+    <div class="collapsible-header" onclick="this.parentElement.classList.toggle('open')">医疗保险（三种类型） &nbsp;<span style="font-size:12px;color:var(--c-dg)">★ 全省最灵活</span><span class="arrow">▼</span></div>
+    <div class="collapsible-body"><div class="inner-pad">
+      <table class="inner-table"><tr><th>类型</th><th>基数 2026</th><th>单位费率</th><th>个人费率</th><th>生育保险</th><th>大额补助</th></tr><tr><td>单建统筹</td><td rowspan="3">4,775 – 27,549</td><td><span style="color:var(--warn)">2.45%</span></td><td>0.5%</td><td rowspan="3">0.7%</td><td rowspan="3">0.5%</td></tr><tr><td>统账结合（有个账）</td><td><span style="color:var(--warn)">5%</span></td><td>2%</td></tr><tr><td>统账结合（无个账）</td><td><span style="color:var(--warn)">4.5%</span></td><td>0.5%</td></tr></table>
+      <div class="alert alert-warn">⚠ 2026年7月起各档费率上调：单建2.3%→2.45%，统账有个账4.3%→5%，统账无个账3.8%→4.5%。</div>
+    </div><div class="link-row">来源：<a href="https://www.dg.gov.cn/ylbzj/gkmlpt/content/4/4322/post_4322504.html" target="_blank">东医保〔2024〕45号</a></div></div>
+  </div>
+  <div class="collapsible">
+    <div class="collapsible-header" onclick="this.parentElement.classList.toggle('open')">失业保险 &nbsp;<span style="font-size:12px;color:var(--text-muted)">费率：单位0.8% + 个人0.2%</span><span class="arrow">▼</span></div>
+    <div class="collapsible-body"><div class="inner-pad"><table class="inner-table"><tr><th>版本</th><th>基数上限</th><th>基数下限</th><th>个人最低缴费</th></tr><tr><td>2026.07-2027.06</td><td>27,702</td><td>2,080</td><td>4.16</td></tr><tr><td>2025.07-2026.06</td><td>26,298</td><td>2,080</td><td>4.16</td></tr></table></div><div class="link-row">来源：<a href="https://dghrss.dg.gov.cn/xwzx/gsgg/tzgg/content/post_4558566.html" target="_blank">东莞市人社局</a></div></div>
+  </div>
+  <div class="collapsible">
+    <div class="collapsible-header" onclick="this.parentElement.classList.toggle('open')">工伤保险 &nbsp;<span style="font-size:12px;color:var(--text-muted)">八档 0.2%~1.4%，个人不缴费</span><span class="arrow">▼</span></div>
+    <div class="collapsible-body"><div class="inner-pad"><table class="inner-table"><tr><th>一类</th><th>二类</th><th>三类</th><th>四类</th><th>五类</th><th>六类</th><th>七类</th><th>八类</th></tr><tr><td>0.2%</td><td>0.4%</td><td>0.6%</td><td>0.8%</td><td>0.9%</td><td>1.0%</td><td>1.2%</td><td>1.4%</td></tr></table></div></div>
+  </div>
+  <div class="collapsible">
+    <div class="collapsible-header" onclick="this.parentElement.classList.toggle('open')">住房公积金 &nbsp;<span style="font-size:12px;color:var(--text-muted)">比例 5%-12%，灵活就业最低10%</span><span class="arrow">▼</span></div>
+    <div class="collapsible-body"><div class="inner-pad"><table class="inner-table"><tr><th>版本</th><th>基数下限</th><th>基数上限</th><th>双边最低</th><th>双边最高</th><th>灵活就业比例</th></tr><tr><td>2026年度</td><td>2,080</td><td>27,391</td><td>208</td><td><strong>6,574</strong></td><td>10%-24%</td></tr></table></div><div class="link-row">来源：<a href="https://dggjj.dg.gov.cn/bmfw/lhjyjcl/content/post_4523031.html" target="_blank">东莞公积金中心</a></div></div>
+  </div>
+</div>
+
+<!-- 佛山 Panel -->
+<div class="city-panel" id="panel-fs">
+  <div class="collapsible open">
+    <div class="collapsible-header" onclick="this.parentElement.classList.toggle('open')">养老保险 &nbsp;<span style="font-size:12px;color:var(--text-muted)">费率：单位16% + 个人8%</span><span class="arrow">▼</span></div>
+    <div class="collapsible-body"><div class="inner-pad"><table class="inner-table"><tr><th>版本</th><th>基数下限</th><th>基数上限</th><th>单位最低缴费</th><th>个人最低缴费</th><th>灵活就业最低(20%)</th></tr><tr><td>2025.07-2026.06</td><td>4,775</td><td>27,549</td><td>764</td><td>382</td><td>955</td></tr><tr><td>2024.07-2025.06</td><td>4,767</td><td>27,501</td><td>762.72</td><td>381.36</td><td>953.4</td></tr></table></div><div class="link-row">来源：<a href="https://hrss.gd.gov.cn/zwgk/xxgkml/bmwj/qtwj/shbz/content/mpost_4789618.html" target="_blank">粤人社发〔2025〕32号</a></div></div>
+  </div>
+  <div class="collapsible">
+    <div class="collapsible-header" onclick="this.parentElement.classList.toggle('open')">医疗保险 &nbsp;<span style="color:var(--c-fs);font-size:12px;">★ 基数上限仅9,660（四城最低）</span><span class="arrow">▼</span></div>
+    <div class="collapsible-body"><div class="inner-pad">
+      <table class="inner-table"><tr><th>项目</th><th>2025版</th><th>2026版</th><th>变化</th></tr><tr><td>基数上限</td><td>9,660</td><td>9,660</td><td>不变</td></tr><tr><td>基数下限</td><td>4,830</td><td>4,669</td><td><span class="tag tag-down">↓161</span></td></tr><tr><td>单位费率（统账，含生育1%）</td><td>5%</td><td>5.5%</td><td><span class="tag tag-up">↑0.5%</span></td></tr><tr><td>个人费率（统账）</td><td>2%</td><td>2%</td><td>不变</td></tr><tr><td>退休延缴基数</td><td>8,050</td><td>7,781</td><td><span class="tag tag-down">↓269</span></td></tr></table>
+      <div class="alert alert-info">💡 佛山医保基数上限仅9,660元，远低于养老基数上限27,549元。高薪员工医保成本显著低于其他三城。</div>
+    </div><div class="link-row">来源：<a href="https://www.foshan.gov.cn/zsk?kCode=CSS00009331" target="_blank">佛山市三水区社保标准</a> <a href="https://www.foshan.gov.cn/zwgk/zfxxgkml/sylbzj/gkmlpt/content/6/6238/post_6238698.html" target="_blank">佛府办〔2025〕10号</a></div></div>
+  </div>
+  <div class="collapsible">
+    <div class="collapsible-header" onclick="this.parentElement.classList.toggle('open')">失业保险 &nbsp;<span style="font-size:12px;color:var(--text-muted)">费率：单位0.8% + 个人0.2%</span><span class="arrow">▼</span></div>
+    <div class="collapsible-body"><div class="inner-pad"><table class="inner-table"><tr><th>版本</th><th>基数上限</th><th>基数下限</th><th>失业金标准</th></tr><tr><td>2026年</td><td>31,395</td><td>2,080</td><td>1,872/月</td></tr><tr><td>2025年(7-12月)</td><td>28,959</td><td>2,080</td><td>1,872/月</td></tr></table></div><div class="link-row">来源：<a href="https://www.foshan.gov.cn/zsk/?kCode=CNH00008915" target="_blank">南海区社保标准</a></div></div>
+  </div>
+  <div class="collapsible">
+    <div class="collapsible-header" onclick="this.parentElement.classList.toggle('open')">工伤保险 &nbsp;<span style="font-size:12px;color:var(--text-muted)">八档 0.2%~1.4%，个人不缴费</span><span class="arrow">▼</span></div>
+    <div class="collapsible-body"><div class="inner-pad"><table class="inner-table"><tr><th>一类</th><th>二类</th><th>三类</th><th>四类</th><th>五类</th><th>六类</th><th>七类</th><th>八类</th></tr><tr><td>0.2%</td><td>0.4%</td><td>0.6%</td><td>0.8%</td><td>0.9%</td><td>1.0%</td><td>1.2%</td><td>1.4%</td></tr></table></div></div>
+  </div>
+  <div class="collapsible">
+    <div class="collapsible-header" onclick="this.parentElement.classList.toggle('open')">住房公积金 &nbsp;<span style="font-size:12px;color:var(--text-muted)">比例 5%-12%，个人比例≥单位比例</span><span class="arrow">▼</span></div>
+    <div class="collapsible-body"><div class="inner-pad"><table class="inner-table"><tr><th>版本</th><th>基数下限</th><th>基数上限</th><th>双边最低</th><th>双边最高</th></tr><tr><td>2026.07-2027.06</td><td>2,080</td><td>31,395</td><td>208</td><td><strong>7,534</strong></td></tr></table></div><div class="link-row">来源：<a href="https://fsgjj.foshan.gov.cn/xxgk/fgzc/qtwj/content/post_7180001.html" target="_blank">佛山公积金中心</a></div></div>
+  </div>
+</div>
+
+<!-- 四、实操建议 -->
+<div id="tips" class="section-title">四、资深社保专员实操建议</div>
+<div class="tips-grid">
+  <div class="tip-card"><h4>1. 广州医保费率恢复</h4><p>2026年1月单位费率从4.5%恢复至6%（含生育5.35%→6.85%），最低基数员工企业年增≈<span class="em">1,121元/人</span>。建议更新2026年社保预算。</p></div>
+  <div class="tip-card"><h4>2. 佛山医保基数洼地</h4><p>医保基数上限仅<span class="em">9,660元</span>，远低于养老基数27,549元。高薪员工医保成本约为其他三城的1/3。</p></div>
+  <div class="tip-card"><h4>3. 最低工资与失业金差异</h4><p>广州最低工资2,500元，失业金2,250元/月；其他三城2,080元，失业金1,872元/月。广州高出<span class="em">20%</span>。</p></div>
+  <div class="tip-card"><h4>4. 医保退休年限</h4><ul><li><strong>广州：</strong>2014年后参保需累计15年+本市满10年</li><li><strong>珠海：</strong>至2029年逐步统一为25年+本市满10年</li><li><strong>东莞/佛山：</strong>按省规定逐步调整</li></ul></div>
+  <div class="tip-card"><h4>5. 公积金策略</h4><ul><li>东莞灵活就业最低10%（单位职工的2倍）</li><li>佛山：个人比例必须 ≥ 单位比例</li><li>广州基数上限最高（41,697元）</li></ul></div>
+  <div class="tip-card"><h4>6. 合规红线</h4><ul><li>禁止全员按最低基数参保（税务已比对个税数据）</li><li>公积金具有强制性，违规罚款1-5万元</li><li>试用期30日内必须参保</li></ul></div>
+  <div class="tip-card"><h4>7. 通用操作渠道</h4><p>增减员/基数调整 → <strong>广东省电子税务局</strong> 或 <strong>"粤税通"小程序</strong>；公积金 → 各市公积金中心网上办事大厅。社保咨询热线：12333 / 12366。</p></div>
+  <div class="tip-card"><h4>8. 灵活就业最优策略</h4><ul><li>珠海：选单建统筹（2.5%）省成本</li><li>东莞：选统账结合无个账折中</li><li>佛山：医保基数下限仅4,669元</li></ul></div>
+</div>
+
+<!-- 五、官方链接 -->
+<div id="links" class="section-title">五、关键官方链接汇总</div>
+<table class="cost-table" style="font-size:13px;">
+  <tr><th width="60">城市</th><th width="120">机构</th><th>网址</th></tr>
+  <tr><td rowspan="3">广州</td><td>广东省人社厅</td><td><a href="https://hrss.gd.gov.cn" target="_blank">hrss.gd.gov.cn</a></td></tr>
+  <tr><td>广州市医保局</td><td><a href="https://www.gz.gov.cn/gzjg/gzsylbzj/" target="_blank">gz.gov.cn/gzjg/gzsylbzj</a></td></tr>
+  <tr><td>广州公积金中心</td><td><a href="https://gjj.gz.gov.cn" target="_blank">gjj.gz.gov.cn</a></td></tr>
+  <tr><td rowspan="3">珠海</td><td>珠海市人社局</td><td><a href="https://zhrsj.zhuhai.gov.cn" target="_blank">zhrsj.zhuhai.gov.cn</a></td></tr>
+  <tr><td>珠海市医保局</td><td><a href="https://www.zhuhai.gov.cn/ylbzj/" target="_blank">zhuhai.gov.cn/ylbzj</a></td></tr>
+  <tr><td>珠海公积金中心</td><td><a href="https://gjj.zhuhai.gov.cn" target="_blank">gjj.zhuhai.gov.cn</a></td></tr>
+  <tr><td rowspan="3">东莞</td><td>东莞市人社局</td><td><a href="https://dghrss.dg.gov.cn" target="_blank">dghrss.dg.gov.cn</a></td></tr>
+  <tr><td>东莞市医保局</td><td><a href="https://www.dg.gov.cn/ylbzj/" target="_blank">dg.gov.cn/ylbzj</a></td></tr>
+  <tr><td>东莞公积金中心</td><td><a href="https://dggjj.dg.gov.cn" target="_blank">dggjj.dg.gov.cn</a></td></tr>
+  <tr><td rowspan="3">佛山</td><td>佛山市社保局</td><td><a href="https://fssi.foshan.gov.cn" target="_blank">fssi.foshan.gov.cn</a></td></tr>
+  <tr><td>佛山市医保局</td><td><a href="https://www.foshan.gov.cn/gzjg/fsylbzj/" target="_blank">foshan.gov.cn/gzjg/fsylbzj</a></td></tr>
+  <tr><td>佛山公积金中心</td><td><a href="https://fsgjj.foshan.gov.cn" target="_blank">fsgjj.foshan.gov.cn</a></td></tr>
+  <tr><td>通用</td><td>电子税务局</td><td><a href="https://etax.guangdong.chinatax.gov.cn" target="_blank">etax.guangdong.chinatax.gov.cn</a></td></tr>
+  <tr><td>通用</td><td>粤税通</td><td>微信搜索"粤税通"小程序</td></tr>
+</table>
+
+<div class="footer">编制日期：2026年7月23日 &nbsp;|&nbsp; 数据来源：各级政府官方网站公开信息 &nbsp;|&nbsp; 仅供参考，以官方文件为准</div>
+
+</div><!-- /container -->
+</div><!-- /compact-mode -->
+
+<!-- ========================================== -->
+<!-- ===== DETAIL MODE ===== -->
+<!-- ========================================== -->
+<div class="detail-mode">
+
+<div class="detail-top">
+  <h1>广州 · 珠海 · 东莞 · 佛山</h1>
+  <div class="sub">社保公积金政策完整汇编 &nbsp;|&nbsp; 2025.07-2026.06 &nbsp;|&nbsp; 每条数据附官方链接</div>
+  <button class="back-btn" onclick="switchMode('compact')">← 返回速览模式</button>
+</div>
+<div class="container">
+
+<!-- 广州详细 -->
+<div class="detail-section" id="detail-gz">
+  <div class="detail-city-header">🏙️ 一、广州市</div>
+  <div class="detail-city-body">
+
+    <h3 class="first">1. 养老保险</h3>
+    <table>
+      <tr><th>项目</th><th>2024.07-2025.06 版本</th><th>2025.07-2026.06 版本</th><th>变化</th></tr>
+      <tr><td>基数上限</td><td>27,501元</td><td>27,549元</td><td><span class="tag tag-up">↑48</span></td></tr>
+      <tr><td>基数下限</td><td>5,500元</td><td>5,510元</td><td><span class="tag tag-up">↑10</span></td></tr>
+      <tr><td>单位费率</td><td>16%</td><td>16%</td><td>不变</td></tr>
+      <tr><td>个人费率</td><td>8%</td><td>8%</td><td>不变</td></tr>
+      <tr class="highlight-row"><td>单位最低缴费</td><td>880元/月</td><td>881.6元/月</td><td><span class="tag tag-up">↑1.6</span></td></tr>
+      <tr class="highlight-row"><td>个人最低缴费</td><td>440元/月</td><td>440.8元/月</td><td><span class="tag tag-up">↑0.8</span></td></tr>
+      <tr><td>灵活就业费率</td><td>20%</td><td>20%</td><td>不变</td></tr>
+    </table>
+    <div class="detail-note">官方依据：<a class="detail-link" href="https://hrss.gd.gov.cn/zwgk/xxgkml/bmwj/qtwj/shbz/content/mpost_4789618.html" target="_blank">粤人社发〔2025〕32号</a> | <a class="detail-link" href="https://hrss.gd.gov.cn/zwgk/gsgg/content/post_4615619.html" target="_blank">粤人社发〔2024〕33号</a></div>
+    <div class="detail-note">操作：广州养老基数执行广东省统一标准，广州作为一类片区下限高于其他城市。每年7月为基数调整月。单位通过电子税务局申报，灵活就业人员通过"粤税通"自行申报。</div>
+
+    <h3>2. 医疗保险（含生育保险）</h3>
+    <table>
+      <tr><th>项目</th><th>2025.01-2025.12 版本</th><th>2026.01-2026.12 版本</th><th>变化</th></tr>
+      <tr><td>基数上限</td><td>31,179元</td><td>31,170元</td><td><span class="tag tag-down">↓9</span></td></tr>
+      <tr><td>基数下限</td><td>6,236元</td><td>6,234元</td><td><span class="tag tag-down">↓2</span></td></tr>
+      <tr><td>单位费率（含生育0.85%）</td><td>5.35%（阶段性降费）</td><td>6.85%</td><td><span class="tag tag-up">↑1.5%</span></td></tr>
+      <tr><td>个人费率</td><td>2%</td><td>2%</td><td>不变</td></tr>
+      <tr class="highlight-row"><td>单位最低缴费</td><td>333.63元/月</td><td>427.03元/月</td><td><span class="tag tag-up">↑93.4</span></td></tr>
+      <tr class="highlight-row"><td>个人最低缴费</td><td>124.72元/月</td><td>124.68元/月</td><td><span class="tag tag-down">↓0.04</span></td></tr>
+      <tr><td>灵活就业费率</td><td>6.5%</td><td>8%</td><td><span class="tag tag-up">↑1.5%</span></td></tr>
+    </table>
+    <div class="detail-warn">⚠ 重要提醒：2026年1月起阶段性降费政策到期，医保单位费率从4.5%恢复至6%。企业成本显著上升！</div>
+    <div class="detail-note">来源：<a class="detail-link" href="https://www.gz.gov.cn/zwgk/zfxxgkml/sylbzj/gkmlpt/content/7/7397/post_7397649.html" target="_blank">穗医保发〔2024〕5号</a> | 医保退休年限：实施后首次参保需累计满15年且本市满10年。</div>
+
+    <h3>3. 失业保险</h3>
+    <table>
+      <tr><th>基数上限</th><th>基数下限(最低工资)</th><th>单位费率</th><th>个人费率</th><th>失业金标准</th></tr>
+      <tr><td>41,112元</td><td>2,500元</td><td>0.8%</td><td>0.2%</td><td>2,250元/月</td></tr>
+    </table>
+    <div class="detail-note">来源：<a class="detail-link" href="https://znhd.neimenggu.chinatax.gov.cn:8443/znhdzsknsrd/detail?id=666220" target="_blank">广东省税务局</a></div>
+
+    <h3>4. 工伤保险</h3>
+    <table><tr><th>一类</th><th>二类</th><th>三类</th><th>四类</th><th>五类</th><th>六类</th><th>七类</th><th>八类</th></tr><tr><td>0.2%</td><td>0.4%</td><td>0.6%</td><td>0.8%</td><td>0.9%</td><td>1.0%</td><td>1.2%</td><td>1.4%</td></tr></table>
+    <div class="detail-note">个人不缴费。特定人员单项工伤保险基数：上限27,549元/下限5,510元（2025.11-2026.06）。</div>
+
+    <h3>5. 住房公积金</h3>
+    <table>
+      <tr><th>项目</th><th>2025.07-2026.06 版本</th><th>2026.07-2027.06 版本</th><th>变化</th></tr>
+      <tr><td>基数上限</td><td>39,912元</td><td>41,697元</td><td><span class="tag tag-up">↑1,785</span></td></tr>
+      <tr><td>基数下限</td><td>2,500元</td><td>2,500元</td><td>不变</td></tr>
+      <tr class="highlight-row"><td>月缴存额上限(双边)</td><td>9,578元</td><td>10,007元</td><td><span class="tag tag-up">↑429</span></td></tr>
+    </table>
+    <div class="detail-note">来源：<a class="detail-link" href="https://gjj.gz.gov.cn/gg/tzgg/content/post_10879601.html" target="_blank">广州公积金中心 - 2026年度调整</a></div>
+  </div>
+</div>
+
+<!-- 珠海详细 -->
+<div class="detail-section">
+  <div class="detail-city-header">🌊 二、珠海市</div>
+  <div class="detail-city-body">
+    <h3 class="first">1. 养老保险</h3>
+    <table>
+      <tr><th>项目</th><th>2024.07-2025.06</th><th>2025.07-2026.06</th><th>变化</th></tr>
+      <tr><td>基数上限</td><td>27,501</td><td>27,549</td><td><span class="tag tag-up">↑48</span></td></tr>
+      <tr><td>基数下限</td><td>4,767</td><td>4,775</td><td><span class="tag tag-up">↑8</span></td></tr>
+      <tr><td>单位费率</td><td>16%</td><td>16%</td><td>不变</td></tr>
+      <tr><td>个人费率</td><td>8%</td><td>8%</td><td>不变</td></tr>
+      <tr class="highlight-row"><td>单位最低缴费</td><td>762.72</td><td>764</td><td><span class="tag tag-up">↑1.28</span></td></tr>
+      <tr class="highlight-row"><td>个人最低缴费</td><td>381.36</td><td>382</td><td><span class="tag tag-up">↑0.64</span></td></tr>
+      <tr><td>灵活就业费率</td><td>20%</td><td>20%</td><td>不变</td></tr>
+    </table>
+    <div class="detail-note">来源：<a class="detail-link" href="https://zhrsj.zhuhai.gov.cn/zc/zxwj/content/post_3848209.html" target="_blank">珠海市人社局</a></div>
+
+    <h3>2. 医疗保险（两档制）</h3>
+    <table>
+      <tr><th>项目</th><th>统账结合（一档，有个账）</th><th>单建统筹（二档，无个账）</th></tr>
+      <tr><td>基数（2026年）</td><td colspan="2">上限27,549 / 下限4,775</td></tr>
+      <tr><td>单位费率（含生育0.5%）</td><td>6%</td><td>3%</td></tr>
+      <tr><td>个人费率</td><td>1.5%</td><td>0%</td></tr>
+      <tr><td>灵活就业费率</td><td>7%</td><td>2.5%</td></tr>
+    </table>
+    <div class="detail-note">来源：<a class="detail-link" href="https://www.zhuhai.gov.cn/ylbzj/gkmlpt/content/3/3861/post_3861172.html" target="_blank">珠海市医保局</a> | 2026年起医保基数与养老基数统一。退休需一档满10年，医保累计年限至2029年逐步统一为25年。</div>
+
+    <h3>3-5. 失业/工伤/公积金</h3>
+    <table>
+      <tr><th>险种</th><th>费率</th><th>基数</th><th>备注</th></tr>
+      <tr><td>失业保险</td><td>单位0.8% + 个人0.2%</td><td>上限34,926 / 下限2,080</td><td>失业金1,872元/月</td></tr>
+      <tr><td>工伤保险</td><td>八档 0.2%~1.4%</td><td>按工资（≥2,080）</td><td>个人不缴费</td></tr>
+      <tr><td>住房公积金</td><td>5%-12%</td><td>上限36,279 / 下限2,080</td><td>双边最高8,706元</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- 东莞详细 -->
+<div class="detail-section">
+  <div class="detail-city-header">🏭 三、东莞市</div>
+  <div class="detail-city-body">
+    <h3 class="first">1. 养老保险</h3>
+    <table>
+      <tr><th>项目</th><th>2024.07-2025.06</th><th>2025.07-2026.06</th><th>变化</th></tr>
+      <tr><td>基数上限</td><td>27,501</td><td>27,549</td><td><span class="tag tag-up">↑48</span></td></tr>
+      <tr><td>基数下限</td><td>4,767</td><td>4,775</td><td><span class="tag tag-up">↑8</span></td></tr>
+      <tr><td>单位费率</td><td>16%</td><td>16%</td><td>不变</td></tr>
+      <tr><td>个人费率</td><td>8%</td><td>8%</td><td>不变</td></tr>
+    </table>
+    <div class="detail-note">来源：<a class="detail-link" href="https://dghrss.dg.gov.cn/gkmlpt/content/4/4455/mpost_4455457.html" target="_blank">东莞市人社局</a></div>
+
+    <h3>2. 医疗保险（三种类型）</h3>
+    <table>
+      <tr><th>医保类型</th><th>2026年基数</th><th>单位费率</th><th>个人费率</th><th>生育保险</th><th>大额补助</th></tr>
+      <tr><td>单建统筹</td><td rowspan="3">4,775 – 27,549</td><td>2.45%</td><td>0.5%</td><td rowspan="3">0.7%</td><td rowspan="3">0.5%</td></tr>
+      <tr><td>统账结合（有个账）</td><td>5%</td><td>2%</td></tr>
+      <tr><td>统账结合（无个账）</td><td>4.5%</td><td>0.5%</td></tr>
+    </table>
+    <div class="detail-warn">⚠ 2026年7月起各档费率上调：单建2.3%→2.45%，统账有个账4.3%→5%，无个账3.8%→4.5%。</div>
+    <div class="detail-note">来源：<a class="detail-link" href="https://www.dg.gov.cn/ylbzj/gkmlpt/content/4/4322/post_4322504.html" target="_blank">东医保〔2024〕45号</a> | 东莞医保体系为全省最灵活的之一。灵活就业人员可选择其中一个类型参保。</div>
+
+    <h3>3-5. 失业/工伤/公积金</h3>
+    <table>
+      <tr><th>险种</th><th>费率</th><th>基数</th><th>备注</th></tr>
+      <tr><td>失业保险</td><td>单位0.8%+个人0.2%</td><td>上限27,702 / 下限2,080</td><td>2026年7月新标准</td></tr>
+      <tr><td>工伤保险</td><td>八档 0.2%~1.4%</td><td>按工资（≥2,080）</td><td>个人不缴费</td></tr>
+      <tr><td>住房公积金</td><td>5%-12%（灵活就业10%-24%）</td><td>上限27,391 / 下限2,080</td><td>灵活就业最低10%</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- 佛山详细 -->
+<div class="detail-section">
+  <div class="detail-city-header">🏯 四、佛山市</div>
+  <div class="detail-city-body">
+    <h3 class="first">1. 养老保险</h3>
+    <table>
+      <tr><th>项目</th><th>2024.07-2025.06</th><th>2025.07-2026.06</th><th>变化</th></tr>
+      <tr><td>基数上限</td><td>27,501</td><td>27,549</td><td><span class="tag tag-up">↑48</span></td></tr>
+      <tr><td>基数下限</td><td>4,767</td><td>4,775</td><td><span class="tag tag-up">↑8</span></td></tr>
+      <tr><td>单位费率</td><td>16%</td><td>16%</td><td>不变</td></tr>
+      <tr><td>个人费率</td><td>8%</td><td>8%</td><td>不变</td></tr>
+    </table>
+    <div class="detail-note">来源：<a class="detail-link" href="https://hrss.gd.gov.cn/zwgk/xxgkml/bmwj/qtwj/shbz/content/mpost_4789618.html" target="_blank">粤人社发〔2025〕32号</a></div>
+
+    <h3>2. 医疗保险（2026年改革）</h3>
+    <table>
+      <tr><th>项目</th><th>2025年</th><th>2026年</th><th>变化</th></tr>
+      <tr><td>医保基数上限</td><td>9,660</td><td>9,660</td><td>不变</td></tr>
+      <tr><td>医保基数下限</td><td>4,830</td><td>4,669</td><td><span class="tag tag-down">↓161</span></td></tr>
+      <tr><td>单位费率（统账，含生育1%）</td><td>5%</td><td>5.5%</td><td><span class="tag tag-up">↑0.5%</span></td></tr>
+      <tr><td>个人费率（统账）</td><td>2%</td><td>2%</td><td>不变</td></tr>
+      <tr><td>退休延缴基数</td><td>8,050</td><td>7,781</td><td><span class="tag tag-down">↓269</span></td></tr>
+    </table>
+    <div class="detail-warn">⚠ 佛山医保基数远低于养老基数，是全省唯一医保基数大幅低于养老基数的城市。高薪员工按实际工资缴医保的成本远低于养老保险！</div>
+    <div class="detail-note">来源：<a class="detail-link" href="https://www.foshan.gov.cn/zsk?kCode=CSS00009331" target="_blank">三水区社保标准</a> | <a class="detail-link" href="https://www.foshan.gov.cn/zwgk/zfxxgkml/sylbzj/gkmlpt/content/6/6238/post_6238698.html" target="_blank">佛府办〔2025〕10号</a></div>
+
+    <h3>3-5. 失业/工伤/公积金</h3>
+    <table>
+      <tr><th>险种</th><th>费率</th><th>基数</th><th>备注</th></tr>
+      <tr><td>失业保险</td><td>单位0.8%+个人0.2%</td><td>上限31,395 / 下限2,080</td><td>失业金1,872元/月</td></tr>
+      <tr><td>工伤保险</td><td>八档 0.2%~1.4%</td><td>按工资（≥2,080）</td><td>暂停浮动费率</td></tr>
+      <tr><td>住房公积金</td><td>5%-12%（个人≥单位）</td><td>上限31,395 / 下限2,080</td><td>双边最高7,534元</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- 操作指南 -->
+<div class="detail-ops">
+  <h2>五、通用操作指南（四城通用）</h2>
+  <h3 style="color:#1a1a2e">5.1 单位社保开户</h3>
+  <ol class="step-list">
+    <li>取得营业执照后系统自动完成社保登记（广东省"多证合一"）；</li>
+    <li>登录<strong>广东省电子税务局</strong>（etax.guangdong.chinatax.gov.cn）；</li>
+    <li>路径：【我要办税】→【税费申报及缴纳】→【社保费管理】；</li>
+    <li>完成社保费基本信息管理中的单位信息确认与缴费核定；</li>
+    <li>绑定三方扣款协议，确保扣款账户余额充足。</li>
+  </ol>
+
+  <h3 style="color:#1a1a2e">5.2 增员（新员工参保）</h3>
+  <ol class="step-list">
+    <li>电子税务局 → 社保费管理 → <strong>社保增员登记</strong>；</li>
+    <li>录入新员工信息（姓名、身份证号、缴费工资、参保险种）；</li>
+    <li>系统自动校验，也可通过"粤税通"小程序操作；</li>
+    <li>增员后当月需完成社会保险费申报才能扣款。</li>
+  </ol>
+
+  <h3 style="color:#1a1a2e">5.3 减员（员工离职停保）</h3>
+  <ol class="step-list">
+    <li>电子税务局 → 社保费管理 → <strong>社保减员登记</strong>；</li>
+    <li>勾选需减员人员，选择减员原因，填写实际减员时间；</li>
+    <li>如当月已申报社保，需先作废申报再减员。</li>
+  </ol>
+
+  <h3 style="color:#1a1a2e">5.4 缴费工资调整</h3>
+  <ol class="step-list">
+    <li>电子税务局 → 社保费管理 → <strong>缴费工资调整</strong>；</li>
+    <li>系统自动判断是否在基数上下限范围内；</li>
+    <li>每年7月为养老保险基数统一调整月，建议在此之前完成年度工资申报。</li>
+  </ol>
+
+  <h3 style="color:#1a1a2e">5.5 公积金操作</h3>
+  <ol class="step-list">
+    <li>各市公积金中心有独立网上办事大厅；</li>
+    <li>年度调整：每年7月在公积金系统完成基数/比例调整；</li>
+    <li>增员/减员：公积金系统单独操作，不与社保同步。</li>
+  </ol>
+
+  <h3 style="color:#1a1a2e">5.6 跨市转移</h3>
+  <ol class="step-list">
+    <li><strong>省内转移：</strong>四城之间已简化，新单位直接增员即可；</li>
+    <li><strong>养老保险：</strong>省内无需办理转移，退休时统一归集；</li>
+    <li><strong>医疗保险：</strong>通过"粤医保"小程序办理；</li>
+    <li><strong>公积金：</strong>通过"全国住房公积金"小程序办理。</li>
+  </ol>
+</div>
+
+<!-- 补充建议 -->
+<div class="detail-supplement">
+  <h2>六、资深社保专员补充建议</h2>
+  <div class="card-grid">
+    <div class="info-card"><h4>🔴 1. 广州医保费率恢复——预算冲击</h4><p>2026年1月起广州医保单位费率从4.5%恢复至6%，最低基数员工企业年增成本约<strong>1,121元/人</strong>。建议提前与财务沟通2026年社保预算，关注是否出台新降费政策。</p></div>
+    <div class="info-card"><h4>🟠 2. 佛山医保基数"洼地效应"</h4><p>佛山医保基数上限仅9,660元，远低于养老基数的27,549元。高薪员工的医保成本远低于其他三城，跨市招聘时可作为成本优势宣传。</p></div>
+    <div class="info-card"><h4>🟡 3. 最低工资与失业金差异</h4><p>广州最低工资2,500元，失业金2,250元/月；其他三城2,080元，失业金1,872元/月。广州高出17%，是跨市用工的隐性成本。</p></div>
+    <div class="info-card"><h4>🟢 4. 医保退休年限差异</h4><ul><li>广州：2014年后参保需累计15年+本市满10年</li><li>珠海：至2029年统一为25年+本市满10年</li><li>东莞/佛山：按省规定逐步调整</li></ul></div>
+    <div class="info-card"><h4>🔵 5. 公积金缴存策略</h4><ul><li>东莞灵活就业最低10%，比单位职工5%高出一倍</li><li>佛山：个人比例≥单位比例</li><li>广州基数上限最高（41,697元），高薪人群公积金贷款额度优势最大</li></ul></div>
+    <div class="info-card"><h4>🟣 6. 社保合规红线</h4><ul><li>禁止按最低基数全员参保（税务已比对个税数据）</li><li>公积金具有强制性，违规罚款1-5万元</li><li>试用期30日内必须参保</li></ul></div>
+    <div class="info-card"><h4>⚪ 7. 四城企业综合成本对比（最低基数）</h4>
+      <table style="font-size:11px;width:100%"><tr><th>城市</th><th>养老(单+个)</th><th>医保(单+个)</th><th>失业</th><th>工伤</th><th>公积金</th><th>总计/月</th></tr><tr><td>广州</td><td>1,322</td><td>552</td><td>25</td><td>5</td><td>250</td><td><strong>≈2,154</strong></td></tr><tr><td>珠海</td><td>1,146</td><td>358</td><td>21</td><td>4</td><td>208</td><td><strong>≈1,737</strong></td></tr><tr><td>东莞</td><td>1,146</td><td>141</td><td>21</td><td>4</td><td>208</td><td><strong>≈1,520</strong></td></tr><tr><td>佛山</td><td>1,146</td><td>350</td><td>21</td><td>4</td><td>208</td><td><strong>≈1,729</strong></td></tr></table></div>
+    <div class="info-card"><h4>🟤 8. 灵活就业参保策略</h4><ul><li>珠海：可选单建统筹（仅2.5%）大幅降低成本</li><li>东莞：可选统账结合无个账（4.3%）折中</li><li>佛山：医保基数下限仅4,669元，总成本最低</li><li>四城均允许非本地户籍灵活就业人员参加养老保险</li></ul></div>
+  </div>
+</div>
+
+<!-- 官方链接 -->
+<div class="detail-ops">
+  <h2>附录：关键政府官方链接汇总</h2>
+  <table style="width:100%;font-size:13px">
+    <tr><th width="80">城市</th><th width="140">机构</th><th>网址</th><th>用途</th></tr>
+    <tr><td rowspan="4">广州</td><td>广东省人社厅</td><td><a href="https://hrss.gd.gov.cn" target="_blank">hrss.gd.gov.cn</a></td><td>养老保险省级政策</td></tr>
+    <tr><td>广州市医保局</td><td><a href="https://www.gz.gov.cn/gzjg/gzsylbzj/" target="_blank">gz.gov.cn/gzjg/gzsylbzj</a></td><td>医保缴费/待遇</td></tr>
+    <tr><td>广州公积金中心</td><td><a href="https://gjj.gz.gov.cn" target="_blank">gjj.gz.gov.cn</a></td><td>公积金缴存/提取/贷款</td></tr>
+    <tr><td>电子税务局</td><td><a href="https://etax.guangdong.chinatax.gov.cn" target="_blank">etax.guangdong.chinatax.gov.cn</a></td><td>社保申报缴费</td></tr>
+    <tr><td rowspan="3">珠海</td><td>珠海市人社局</td><td><a href="https://zhrsj.zhuhai.gov.cn" target="_blank">zhrsj.zhuhai.gov.cn</a></td><td>养老/失业/工伤</td></tr>
+    <tr><td>珠海市医保局</td><td><a href="https://www.zhuhai.gov.cn/ylbzj/" target="_blank">zhuhai.gov.cn/ylbzj</a></td><td>医保政策</td></tr>
+    <tr><td>珠海公积金中心</td><td><a href="https://gjj.zhuhai.gov.cn" target="_blank">gjj.zhuhai.gov.cn</a></td><td>公积金</td></tr>
+    <tr><td rowspan="3">东莞</td><td>东莞市人社局</td><td><a href="https://dghrss.dg.gov.cn" target="_blank">dghrss.dg.gov.cn</a></td><td>养老/失业/工伤</td></tr>
+    <tr><td>东莞市医保局</td><td><a href="https://www.dg.gov.cn/ylbzj/" target="_blank">dg.gov.cn/ylbzj</a></td><td>医保政策</td></tr>
+    <tr><td>东莞公积金中心</td><td><a href="https://dggjj.dg.gov.cn" target="_blank">dggjj.dg.gov.cn</a></td><td>公积金</td></tr>
+    <tr><td rowspan="3">佛山</td><td>佛山市社保局</td><td><a href="https://fssi.foshan.gov.cn" target="_blank">fssi.foshan.gov.cn</a></td><td>社保综合</td></tr>
+    <tr><td>佛山市医保局</td><td><a href="https://www.foshan.gov.cn/gzjg/fsylbzj/" target="_blank">foshan.gov.cn/gzjg/fsylbzj</a></td><td>医保政策</td></tr>
+    <tr><td>佛山公积金中心</td><td><a href="https://fsgjj.foshan.gov.cn" target="_blank">fsgjj.foshan.gov.cn</a></td><td>公积金</td></tr>
+    <tr><td>通用</td><td>粤税通</td><td>微信搜索"粤税通"</td><td>灵活就业/增减员</td></tr>
+    <tr><td>通用</td><td>社保热线</td><td>12333 / 12366 / 12345</td><td>政策咨询</td></tr>
+  </table>
+</div>
+
+<div class="footer">编制日期：2026年7月23日 &nbsp;|&nbsp; 数据来源：各级政府官方网站公开信息 &nbsp;|&nbsp; 仅供参考，以官方最新文件为准</div>
+
+</div><!-- /container -->
+</div><!-- /detail-mode -->
+
+<script>
+function switchCity(city) {
+  document.querySelectorAll('.city-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.city-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('panel-' + city).classList.add('active');
+  event.target.classList.add('active');
+}
+function switchMode(mode) {
+  document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
+  if (mode === 'compact') {
+    document.body.classList.remove('show-detail');
+    document.querySelector('.mode-btn:first-child').classList.add('active');
+  } else {
+    document.body.classList.add('show-detail');
+    document.querySelector('.mode-btn:last-child').classList.add('active');
+    window.scrollTo(0, 0);
+  }
+}
+// Nav scroll
+const sections = ['dash','cost','cities','tips','links'];
+window.addEventListener('scroll', () => {
+  if (document.body.classList.contains('show-detail')) return;
+  let current = sections[0];
+  sections.forEach(id => {
+    const el = document.getElementById(id);
+    if (el && window.scrollY >= el.offsetTop - 100) current = id;
+  });
+  document.querySelectorAll('.nav-bar a').forEach(a => {
+    a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+  });
+});
+</script>
+
+</body>
+</html>

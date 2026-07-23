@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>广州·珠海·东莞·佛山 社保公积金政策汇编 (2025-2026)</title>
+<style>
+  :root {
+    --bg: #fff;
+    --text: #333;
+    --heading: #1a1a2e;
+    --table-bg: #f8f9fa;
+    --table-border: #dee2e6;
+    --table-header: #16213e;
+    --table-header-text: #fff;
+    --accent: #e94560;
+    --accent2: #0f3460;
+    --highlight: #f0f4ff;
+    --tag-bg: #e8f5e9;
+    --tag-text: #2e7d32;
+    --warn-bg: #fff3e0;
+    --warn-text: #e65100;
+    --info-bg: #e3f2fd;
+    --info-text: #1565c0;
+    --card-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    --divider: #e0e0e0;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family: "Microsoft YaHei","PingFang SC","Hiragino Sans GB",sans-serif; background:#f5f6fa; color:var(--text); line-height:1.7; }
+  .container { max-width:1200px; margin:0 auto; padding:20px; }
+  header { background:linear-gradient(135deg, var(--accent2), var(--accent)); color:#fff; padding:40px 30px; border-radius:12px; margin-bottom:30px; text-align:center; }
+  header h1 { font-size:28px; margin-bottom:10px; }
+  header p { font-size:14px; opacity:0.85; }
+  .city-section { background:#fff; border-radius:12px; box-shadow:var(--card-shadow); margin-bottom:30px; overflow:hidden; }
+  .city-header { background:var(--accent2); color:#fff; padding:16px 24px; font-size:20px; font-weight:bold; display:flex; align-items:center; gap:10px; }
+  .city-header .city-icon { font-size:24px; }
+  .city-body { padding:24px; }
+  h3 { color:var(--accent2); font-size:17px; margin:20px 0 12px; padding-bottom:6px; border-bottom:2px solid var(--accent); display:inline-block; }
+  h3.first { margin-top:0; }
+  table { width:100%; border-collapse:collapse; margin:12px 0 20px; font-size:13px; }
+  th { background:var(--table-header); color:var(--table-header-text); padding:10px 8px; text-align:center; font-weight:500; }
+  td { padding:8px; text-align:center; border:1px solid var(--table-border); }
+  tr:nth-child(even) { background:var(--table-bg); }
+  .highlight-row { background:#fffde7 !important; font-weight:bold; }
+  .tag { display:inline-block; padding:2px 8px; border-radius:4px; font-size:11px; font-weight:bold; }
+  .tag-up { background:var(--tag-bg); color:var(--tag-text); }
+  .tag-down { background:#ffebee; color:#c62828; }
+  .tag-new { background:var(--info-bg); color:var(--info-text); }
+  .note { background:var(--highlight); border-left:4px solid var(--accent2); padding:10px 14px; margin:10px 0; font-size:13px; border-radius:0 4px 4px 0; }
+  .warn { background:var(--warn-bg); border-left:4px solid var(--warn-text); padding:10px 14px; margin:10px 0; font-size:13px; border-radius:0 4px 4px 0; }
+  .link { color:var(--info-text); word-break:break-all; font-size:12px; }
+  .link a { color:var(--info-text); text-decoration:none; }
+  .link a:hover { text-decoration:underline; }
+  .ops-section { background:#fff; border-radius:12px; box-shadow:var(--card-shadow); padding:24px; margin-bottom:30px; }
+  .ops-section h2 { color:var(--accent2); font-size:22px; margin-bottom:16px; padding-bottom:8px; border-bottom:2px solid var(--accent); }
+  .step-list { counter-reset:step; padding:0; }
+  .step-list li { list-style:none; padding:8px 0 8px 32px; position:relative; font-size:14px; }
+  .step-list li::before { counter-increment:step; content:counter(step); position:absolute; left:0; top:8px; width:22px; height:22px; background:var(--accent2); color:#fff; border-radius:50%; text-align:center; line-height:22px; font-size:12px; }
+  .supplement { background:#fff; border-radius:12px; box-shadow:var(--card-shadow); padding:24px; margin-bottom:30px; }
+  .supplement h2 { color:var(--accent); font-size:22px; margin-bottom:16px; padding-bottom:8px; border-bottom:2px solid var(--accent); }
+  .card-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:16px; margin-top:16px; }
+  .info-card { background:var(--highlight); border-radius:8px; padding:16px; }
+  .info-card h4 { color:var(--accent2); margin-bottom:8px; font-size:15px; }
+  .info-card p,.info-card ul { font-size:13px; margin:0; }
+  .info-card ul { padding-left:18px; }
+  .info-card li { margin-bottom:4px; }
+  .toc { background:#fff; border-radius:12px; box-shadow:var(--card-shadow); padding:20px 24px; margin-bottom:30px; }
+  .toc h3 { margin-top:0; border:none; }
+  .toc ul { columns:2; padding-left:20px; font-size:14px; }
+  .toc li { margin-bottom:6px; }
+  .toc a { color:var(--accent2); text-decoration:none; }
+  .toc a:hover { text-decoration:underline; }
+  .ver-badge { display:inline-block; padding:2px 6px; border-radius:3px; font-size:11px; margin-left:4px; }
+  .ver-old { background:#f0f0f0; color:#666; }
+  .ver-new { background:var(--tag-bg); color:var(--tag-text); }
+  @media (max-width:768px) {
+    .container { padding:10px; }
+    header { padding:24px 16px; }
+    header h1 { font-size:22px; }
+    table { font-size:11px; }
+    th, td { padding:6px 4px; }
+    .toc ul { columns:1; }
+    .card-grid { grid-template-columns:1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<header>
+  <h1>广州·珠海·东莞·佛山 社保公积金政策汇编</h1>
+  <p>数据截止日期：2026年7月23日 | 适用期间：2025-2026年度 | 每项数据均附政府官方来源</p>
+</header>
+
+<!-- 目录 -->
+<div class="toc">
+  <h3>目 录</h3>
+  <ul>
+    <li><a href="#gz">一、广州市</a></li>
+    <li><a href="#zh">二、珠海市</a></li>
+    <li><a href="#dg">三、东莞市</a></li>
+    <li><a href="#fs">四、佛山市</a></li>
+    <li><a href="#ops">五、通用操作指南（四城通用）</a></li>
+    <li><a href="#supp">六、资深社保专员补充建议</a></li>
+  </ul>
+</div>
+
+<!-- ==================== 广州 ==================== -->
+<div class="city-section" id="gz">
+  <div class="city-header"><span class="city-icon">🏙️</span> 一、广州市</div>
+  <div class="city-body">
+
+    <h3 class="first">1. 养老保险</h3>
+    <table>
+      <tr><th>项目</th><th>2024.07-2025.06 版本</th><th>2025.07-2026.06 版本</th><th>变化</th></tr>
+      <tr><td>基数上限</td><td>27,501元</td><td>27,549元</td><td><span class="tag tag-up">↑48</span></td></tr>
+      <tr><td>基数下限</td><td>5,500元</td><td>5,510元</td><td><span class="tag tag-up">↑10</span></td></tr>
+      <tr><td>单位费率</td><td>16%</td><td>16%</td><td>不变</td></tr>
+      <tr><td>个人费率</td><td>8%</td><td>8%</td><td>不变</td></tr>
+      <tr class="highlight-row"><td>单位最低缴费</td><td>880元/月</td><td>881.6元/月</td><td><span class="tag tag-up">↑1.6</span></td></tr>
+      <tr class="highlight-row"><td>个人最低缴费</td><td>440元/月</td><td>440.8元/月</td><td><span class="tag tag-up">↑0.8</span></td></tr>
+      <tr><td>灵活就业费率</td><td>20%</td><td>20%</td><td>不变</td></tr>
+      <tr class="highlight-row"><td>灵活就业最低缴费</td><td>1,100元/月</td><td>1,102元/月</td><td><span class="tag tag-up">↑2</span></td></tr>
+    </table>
+    <div class="note">
+      <strong>官方依据：</strong><br>
+      2026版：<a class="link" href="https://hrss.gd.gov.cn/zwgk/xxgkml/bmwj/qtwj/shbz/content/mpost_4789618.html" target="_blank">粤人社发〔2025〕32号 广东省人社厅</a><br>
+      2025版：<a class="link" href="https://hrss.gd.gov.cn/zwgk/gsgg/content/post_4615619.html" target="_blank">粤人社发〔2024〕33号 广东省人社厅</a><br>
+      广州社保详情：<a class="link" href="https://www.gz.gov.cn/zwfw/zxfw/sbfw/content/post_10510453.html" target="_blank">广州市政府官网 - 社保服务</a>
+    </div>
+    <div class="note"><strong>操作说明：</strong>广州养老基数执行广东省统一标准，广州作为一类片区下限高于其他城市。每年7月为基数调整月。单位通过电子税务局申报，灵活就业人员通过"粤税通"自行申报。</div>
+
+    <h3>2. 医疗保险（含生育保险）</h3>
+    <table>
+      <tr><th>项目</th><th>2025.01-2025.12 版本</th><th>2026.01-2026.12 版本</th><th>变化</th></tr>
+      <tr><td>基数上限</td><td>31,179元</td><td>31,170元</td><td><span class="tag tag-down">↓9</span></td></tr>
+      <tr><td>基数下限</td><td>6,236元</td><td>6,234元</td><td><span class="tag tag-down">↓2</span></td></tr>
+      <tr><td>单位费率（含生育0.85%）</td><td>5.35% <span class="tag tag-down">阶段性降费</span></td><td>6.85%</td><td><span class="tag tag-up">↑1.5%</span></td></tr>
+      <tr><td>个人费率</td><td>2%</td><td>2%</td><td>不变</td></tr>
+      <tr class="highlight-row"><td>单位最低缴费</td><td>333.63元/月</td><td>427.03元/月</td><td><span class="tag tag-up">↑93.4</span></td></tr>
+      <tr class="highlight-row"><td>个人最低缴费</td><td>124.72元/月</td><td>124.68元/月</td><td><span class="tag tag-down">↓0.04</span></td></tr>
+      <tr><td>灵活就业费率</td><td>6.5%</td><td>8%</td><td><span class="tag tag-up">↑1.5%</span></td></tr>
+      <tr class="highlight-row"><td>灵活就业最低缴费</td><td>405.34元/月</td><td>498.72元/月</td><td><span class="tag tag-up">↑93.38</span></td></tr>
+    </table>
+    <div class="warn">
+      <strong>⚠ 重要提醒：</strong>2026年1月起，阶段性降费政策到期，医保单位费率从4.5%恢复至6%（含生育合计从5.35%恢复至6.85%），企业成本显著上升！请HR做好预算调整。
+    </div>
+    <div class="note">
+      <strong>官方依据：</strong><br>
+      2026版费率恢复：<a class="link" href="https://www.nfnews.com/content/5385qG2x6B.html" target="_blank">南方都市报报道（引用广州市税务局数据）</a><br>
+      阶段性降费：<a class="link" href="https://www.gz.gov.cn/zwgk/zfxxgkml/sylbzj/gkmlpt/content/7/7397/post_7397649.html" target="_blank">穗医保发〔2024〕5号 广州市医保局</a><br>
+      广州市医保局官网：<a class="link" href="https://www.gz.gov.cn/gzjg/gzsylbzj/" target="_blank">广州市医疗保障局</a>
+    </div>
+    <div class="note"><strong>操作说明：</strong>广州医保缴费基数按本市上上年度全口径城镇单位就业人员月平均工资确定。生育保险与医保合并征收，个人不缴生育险。广州医保个人账户可用于配偶、父母、子女等近亲属就医费用。医保退休年限：《广州市社会医疗保险条例》实施后首次参保需累计满15年且本市满10年。</div>
+
+    <h3>3. 失业保险</h3>
+    <table>
+      <tr><th>项目</th><th>2025.07-2026.06 版本</th><th>备注</th></tr>
+      <tr><td>基数上限</td><td>41,112元</td><td>全省统一</td></tr>
+      <tr><td>基数下限</td><td>2,500元</td><td>广州市最低工资标准</td></tr>
+      <tr><td>单位费率</td><td>0.8%</td><td></td></tr>
+      <tr><td>个人费率</td><td>0.2%</td><td></td></tr>
+      <tr><td>灵活就业费率</td><td>1%</td><td></td></tr>
+    </table>
+    <div class="note">
+      <strong>官方依据：</strong><br>
+      <a class="link" href="https://znhd.neimenggu.chinatax.gov.cn:8443/znhdzsknsrd/detail?id=666220" target="_blank">广东省税务局 - 职工社保费缴费工资规定</a>
+    </div>
+    <div class="note"><strong>操作说明：</strong>失业保险由税务统一征收。灵活就业人员参加失业保险需单独办理。失业保险金标准按本市最低工资标准的90%计发（目前广州为2,500×90%=2,250元/月）。</div>
+
+    <h3>4. 工伤保险</h3>
+    <table>
+      <tr><th>行业类别</th><th>基准费率</th><th>个人缴费</th></tr>
+      <tr><td>一类（低风险）</td><td>0.2%</td><td rowspan="8">0%</td></tr>
+      <tr><td>二类</td><td>0.4%</td></tr>
+      <tr><td>三类</td><td>0.6%</td></tr>
+      <tr><td>四类</td><td>0.8%</td></tr>
+      <tr><td>五类</td><td>0.9%</td></tr>
+      <tr><td>六类</td><td>1.0%</td></tr>
+      <tr><td>七类</td><td>1.2%</td></tr>
+      <tr><td>八类（高风险）</td><td>1.4%</td></tr>
+    </table>
+    <div class="note"><strong>操作说明：</strong>工伤保险由单位全额承担，基数按本单位职工缴费工资总额（不低于最低工资标准2,500元）。特定人员单项工伤保险基数：2025.11-2026.06上限27,549元/下限5,510元。建筑行业按项目参保，费率另计。</div>
+
+    <h3>5. 住房公积金</h3>
+    <table>
+      <tr><th>项目</th><th>2025.07-2026.06 版本</th><th>2026.07-2027.06 版本</th><th>变化</th></tr>
+      <tr><td>基数上限</td><td>39,912元</td><td>41,697元</td><td><span class="tag tag-up">↑1,785</span></td></tr>
+      <tr><td>基数下限</td><td>2,500元</td><td>2,500元</td><td>不变</td></tr>
+      <tr><td>缴存比例</td><td>5%-12%</td><td>5%-12%</td><td>不变</td></tr>
+      <tr class="highlight-row"><td>月缴存额上限(双边)</td><td>9,578元</td><td>10,007元</td><td><span class="tag tag-up">↑429</span></td></tr>
+      <tr class="highlight-row"><td>月缴存额下限(双边)</td><td>250元</td><td>250元</td><td>不变</td></tr>
+    </table>
+    <div class="note">
+      <strong>官方依据：</strong><br>
+      <a class="link" href="https://gjj.gz.gov.cn/gg/tzgg/content/post_10879601.html" target="_blank">广州住房公积金管理中心 - 2026年度缴存调整通知</a>
+    </div>
+    <div class="note"><strong>操作说明：</strong>公积金年度为当年7月至次年6月。单位应在7-8月完成年度调整。可通过公积金中心网上办事大厅或"广州住房公积金管理中心"微信公众号办理。</div>
+
+  </div>
+</div>
+
+<!-- ==================== 珠海 ==================== -->
+<div class="city-section" id="zh">
+  <div class="city-header"><span class="city-icon">🌊</span> 二、珠海市</div>
+  <div class="city-body">
+
+    <h3 class="first">1. 养老保险</h3>
+    <table>
+      <tr><th>项目</th><th>2024.07-2025.06 版本</th><th>2025.07-2026.06 版本</th><th>变化</th></tr>
+      <tr><td>基数上限</td><td>27,501元</td><td>27,549元</td><td><span class="tag tag-up">↑48</span></td></tr>
+      <tr><td>基数下限</td><td>4,767元</td><td>4,775元</td><td><span class="tag tag-up">↑8</span></td></tr>
+      <tr><td>单位费率</td><td>16%</td><td>16%</td><td>不变</td></tr>
+      <tr><td>个人费率</td><td>8%</td><td>8%</td><td>不变</td></tr>
+      <tr class="highlight-row"><td>单位最低缴费</td><td>762.72元/月</td><td>764元/月</td><td><span class="tag tag-up">↑1.28</span></td></tr>
+      <tr class="highlight-row"><td>个人最低缴费</td><td>381.36元/月</td><td>382元/月</td><td><span class="tag tag-up">↑0.64</span></td></tr>
+      <tr><td>灵活就业费率</td><td>20%</td><td>20%</td><td>不变</td></tr>
+      <tr class="highlight-row"><td>灵活就业最低缴费</td><td>953.4元/月</td><td>955元/月</td><td><span class="tag tag-up">↑1.6</span></td></tr>
+    </table>
+    <div class="note">
+      <strong>官方依据：</strong><br>
+      <a class="link" href="https://zhrsj.zhuhai.gov.cn/zc/zxwj/content/post_3848209.html" target="_blank">粤人社发〔2025〕32号 珠海市人社局转发</a><br>
+      <a class="link" href="https://zhsi.zhuhai.gov.cn/sbsj/content/post_3898523.html" target="_blank">2025年度珠海市社会保险信息披露</a>
+    </div>
+
+    <h3>2. 医疗保险（含生育保险）<span class="tag tag-new">★ 珠海特色：两档制</span></h3>
+    <p style="font-size:13px;color:#666;margin-bottom:8px;"><strong>说明：</strong>珠海职工医保分<strong>统账结合</strong>（一档，有个人账户）和<strong>单建统筹</strong>（二档，无个人账户），由单位选择参保类型。</p>
+
+    <h4 style="color:var(--accent2);font-size:15px;">统账结合（一档）</h4>
+    <table>
+      <tr><th>项目</th><th>2025年</th><th>2026年</th><th>变化</th></tr>
+      <tr><td>基数上限</td><td>22,731元(2-12月)</td><td>27,549元</td><td><span class="tag tag-up">↑4,818</span></td></tr>
+      <tr><td>基数下限</td><td>4,546元(2-12月)</td><td>4,775元</td><td><span class="tag tag-up">↑229</span></td></tr>
+      <tr><td>单位费率（含生育0.5%）</td><td>6%</td><td>6%</td><td>不变</td></tr>
+      <tr><td>个人费率</td><td>1.5%</td><td>1.5%</td><td>不变</td></tr>
+      <tr><td>灵活就业费率</td><td>7%</td><td>7%</td><td>不变</td></tr>
+    </table>
+
+    <h4 style="color:var(--accent2);font-size:15px;">单建统筹（二档）</h4>
+    <table>
+      <tr><th>项目</th><th>2025年</th><th>2026年</th><th>变化</th></tr>
+      <tr><td>单位费率（含生育0.5%）</td><td>3%</td><td>3%</td><td>不变</td></tr>
+      <tr><td>个人费率</td><td>0%</td><td>0%</td><td>不变</td></tr>
+      <tr><td>灵活就业费率</td><td>2.5%</td><td>2.5%</td><td>不变</td></tr>
+    </table>
+    <div class="note">
+      <strong>官方依据：</strong><br>
+      <a class="link" href="https://www.zhuhai.gov.cn/ylbzj/gkmlpt/content/3/3861/post_3861172.html" target="_blank">珠海市医疗保障局 - 2026年职工医保缴费基数通知</a><br>
+      <a class="link" href="https://zhrsj.zhuhai.gov.cn/zw/tjsj/content/post_3898356.html" target="_blank">2025年度珠海市社会保险信息披露</a>
+    </div>
+    <div class="note"><strong>操作说明：</strong>2026年起珠海医保基数与养老保险基数统一（上限27,549元/下限4,775元），不再单独使用医保口径。退休时需参加统账结合职工医保满10年才可享受一档退休待遇。医保退休累计年限到2029年逐步统一为25年。</div>
+
+    <h3>3. 失业保险</h3>
+    <table>
+      <tr><th>项目</th><th>2025.01-06月</th><th>2025.07-2026.06</th><th>变化</th></tr>
+      <tr><td>基数上限</td><td>33,468元</td><td>34,926元</td><td><span class="tag tag-up">↑1,458</span></td></tr>
+      <tr><td>基数下限</td><td>2,080元</td><td>2,080元</td><td>不变</td></tr>
+      <tr><td>单位费率</td><td>0.8%</td><td>0.8%</td><td>不变</td></tr>
+      <tr><td>个人费率</td><td>0.2%</td><td>0.2%</td><td>不变</td></tr>
+      <tr class="highlight-row"><td>个人最低缴费</td><td>4.16元/月</td><td>4.16元/月</td><td>不变</td></tr>
+    </table>
+
+    <h3>4. 工伤保险</h3>
+    <p style="font-size:13px;">费率：八档基准费率 0.2% ~ 1.4%（与广州一致），个人不缴费。基数按本单位职工工资总额（不低于最低工资2,080元）。</p>
+
+    <h3>5. 住房公积金</h3>
+    <table>
+      <tr><th>项目</th><th>2026.07-2027.06 版本</th></tr>
+      <tr><td>基数上限</td><td>36,279元</td></tr>
+      <tr><td>基数下限</td><td>2,080元</td></tr>
+      <tr><td>缴存比例</td><td>5%-12%</td></tr>
+      <tr class="highlight-row"><td>月缴存额上限(双边)</td><td>8,706元</td></tr>
+      <tr class="highlight-row"><td>月缴存额下限(双边)</td><td>208元</td></tr>
+    </table>
+    <div class="note">
+      <strong>官方依据：</strong><br>
+      <a class="link" href="https://m.zh.bendibao.com/live/105791.shtm" target="_blank">珠海市住房公积金管理委员会 - 2026年度缴存限额调整通知</a>
+    </div>
+
+  </div>
+</div>
+
+<!-- ==================== 东莞 ==================== -->
+<div class="city-section" id="dg">
+  <div class="city-header"><span class="city-icon">🏭</span> 三、东莞市</div>
+  <div class="city-body">
+
+    <h3 class="first">1. 养老保险</h3>
+    <table>
+      <tr><th>项目</th><th>2024.07-2025.06 版本</th><th>2025.07-2026.06 版本</th><th>变化</th></tr>
+      <tr><td>基数上限</td><td>27,501元</td><td>27,549元</td><td><span class="tag tag-up">↑48</span></td></tr>
+      <tr><td>基数下限</td><td>4,767元</td><td>4,775元</td><td><span class="tag tag-up">↑8</span></td></tr>
+      <tr><td>单位费率</td><td>16%</td><td>16%</td><td>不变</td></tr>
+      <tr><td>个人费率</td><td>8%</td><td>8%</td><td>不变</td></tr>
+      <tr class="highlight-row"><td>单位最低缴费</td><td>762.72元/月</td><td>764元/月</td><td><span class="tag tag-up">↑1.28</span></td></tr>
+      <tr class="highlight-row"><td>个人最低缴费</td><td>381.36元/月</td><td>382元/月</td><td><span class="tag tag-up">↑0.64</span></td></tr>
+      <tr><td>灵活就业费率</td><td>20%</td><td>20%</td><td>不变</td></tr>
+      <tr class="highlight-row"><td>灵活就业最低缴费</td><td>953.4元/月</td><td>955元/月</td><td><span class="tag tag-up">↑1.6</span></td></tr>
+    </table>
+    <div class="note">
+      <strong>官方依据：</strong><br>
+      <a class="link" href="https://dghrss.dg.gov.cn/gkmlpt/content/4/4455/mpost_4455457.html" target="_blank">东莞市人社局 - 2025年养老保险缴费基数通知</a>
+    </div>
+
+    <h3>2. 医疗保险<span class="tag tag-new">★ 东莞特色：三种医保类型</span></h3>
+    <p style="font-size:13px;color:#666;margin-bottom:8px;"><strong>说明：</strong>东莞职工医保分<strong>单建统筹</strong>、<strong>统账结合（有个账）</strong>、<strong>统账结合（无个账）</strong>三种。生育保险和大额补助单独列出。</p>
+
+    <table>
+      <tr><th>医保类型</th><th>参保身份</th><th>2025年 基数下限/上限</th><th>2026年(下半年) 基数下限/上限</th><th>单位费率</th><th>个人费率</th></tr>
+      <tr><td>单建统筹</td><td>在职</td><td>4,767 / 27,501</td><td>4,775 / 27,549</td><td>2.3%→2.45%</td><td>0.5%</td></tr>
+      <tr><td>统账结合(有个账)</td><td>在职</td><td>4,767 / 27,501</td><td>4,775 / 27,549</td><td>4.3%→5%</td><td>2%</td></tr>
+      <tr><td>统账结合(无个账)</td><td>在职</td><td>4,767 / 27,501</td><td>4,775 / 27,549</td><td>3.8%→4.5%</td><td>0.5%</td></tr>
+      <tr><td>生育保险</td><td>在职</td><td colspan="2">同上</td><td>0.7%</td><td>—</td></tr>
+      <tr><td>大额补助</td><td>在职</td><td colspan="2">同上</td><td>0.5%</td><td>—</td></tr>
+      <tr><td>退休人员（所有类型）</td><td>退休</td><td>7,945元</td><td>7,958元</td><td>按类型</td><td>按类型</td></tr>
+    </table>
+    <div class="warn">
+      <strong>⚠ 注意：</strong>2026年7月起东莞医保各档费率均有上调！单建统筹单位费率从2.3%提至2.45%，统账结合有个账从4.3%提至5%，无个账从3.8%提至4.5%。
+    </div>
+    <div class="note">
+      <strong>官方依据：</strong><br>
+      2025版：<a class="link" href="https://www.dg.gov.cn/ylbzj/gkmlpt/content/4/4322/post_4322504.html" target="_blank">东医保〔2024〕45号 东莞医保局</a><br>
+      2026下半年版：<a class="link" href="https://www.dg.gov.cn/ylbzj/gkmlpt/content/4/4553/post_4553461.html" target="_blank">东莞市医保局 - 2026年度下半年医保缴费基数费率表</a>
+    </div>
+    <div class="note"><strong>操作说明：</strong>东莞医保体系为全省最灵活的之一。统账结合"有个账"类似传统职工医保，有个人账户划入；"无个账"版费率更低，适合成本敏感型企业。灵活就业人员可选择其中一个类型参保。大额补助为补充医疗保险性质。</div>
+
+    <h3>3. 失业保险</h3>
+    <table>
+      <tr><th>项目</th><th>2025.07-2026.06 版本</th><th>2026.07-2027.06 版本</th><th>变化</th></tr>
+      <tr><td>基数上限</td><td>26,298元</td><td>27,702元</td><td><span class="tag tag-up">↑1,404</span></td></tr>
+      <tr><td>基数下限</td><td>2,080元</td><td>2,080元</td><td>不变</td></tr>
+      <tr><td>单位费率</td><td>0.8%</td><td>0.8%</td><td>不变</td></tr>
+      <tr><td>个人费率</td><td>0.2%</td><td>0.2%</td><td>不变</td></tr>
+      <tr class="highlight-row"><td>个人最低缴费</td><td>4.16元/月</td><td>4.16元/月</td><td>不变</td></tr>
+    </table>
+    <div class="note">
+      <strong>官方依据：</strong><br>
+      <a class="link" href="https://dghrss.dg.gov.cn/xwzx/gsgg/tzgg/content/post_4558566.html" target="_blank">东莞市人社局 - 失业保险缴费基数上下限调整通告（2026年7月）</a>
+    </div>
+
+    <h3>4. 工伤保险</h3>
+    <p style="font-size:13px;">八档基准费率 0.2%~1.4%，个人不缴费。基数按职工本人工资计算（不低于最低工资2,080元）。</p>
+
+    <h3>5. 住房公积金</h3>
+    <table>
+      <tr><th>项目</th><th>2026年度 版本</th></tr>
+      <tr><td>基数上限</td><td>27,391元</td></tr>
+      <tr><td>基数下限</td><td>2,080元</td></tr>
+      <tr><td>单位职工缴存比例</td><td>5%-12%</td></tr>
+      <tr><td>灵活就业缴存比例</td><td>10%-24%（2%整数倍）</td></tr>
+    </table>
+    <div class="note">
+      <strong>官方依据：</strong><br>
+      <a class="link" href="https://news.qq.com/rain/a/LNK2025120507530600" target="_blank">东莞市住房公积金管理中心 - 2026年度缴存基数调整通知（东府〔2023〕35号）</a><br>
+      <a class="link" href="https://dggjj.dg.gov.cn/bmfw/lhjyjcl/content/post_4523031.html" target="_blank">东莞公积金中心 - 灵活缴存调整</a>
+    </div>
+    <div class="note"><strong>操作说明：</strong>东莞公积金年度为自然年（1-12月），单位可在全年任意月份调整基数。灵活就业人员缴存比例最低10%，高于单位职工的5%下限。</div>
+
+  </div>
+</div>
+
+<!-- ==================== 佛山 ==================== -->
+<div class="city-section" id="fs">
+  <div class="city-header"><span class="city-icon">🏯</span> 四、佛山市</div>
+  <div class="city-body">
+
+    <h3 class="first">1. 养老保险</h3>
+    <table>
+      <tr><th>项目</th><th>2024.07-2025.06 版本</th><th>2025.07-2026.06 版本</th><th>变化</th></tr>
+      <tr><td>基数上限</td><td>27,501元</td><td>27,549元</td><td><span class="tag tag-up">↑48</span></td></tr>
+      <tr><td>基数下限</td><td>4,767元</td><td>4,775元</td><td><span class="tag tag-up">↑8</span></td></tr>
+      <tr><td>单位费率</td><td>16%</td><td>16%</td><td>不变</td></tr>
+      <tr><td>个人费率</td><td>8%</td><td>8%</td><td>不变</td></tr>
+      <tr class="highlight-row"><td>单位最低缴费</td><td>762.72元/月</td><td>764元/月</td><td><span class="tag tag-up">↑1.28</span></td></tr>
+      <tr class="highlight-row"><td>个人最低缴费</td><td>381.36元/月</td><td>382元/月</td><td><span class="tag tag-up">↑0.64</span></td></tr>
+      <tr><td>灵活就业费率</td><td>20%</td><td>20%</td><td>不变（12%统筹+8%个账）</td></tr>
+      <tr class="highlight-row"><td>灵活就业最低缴费</td><td>953.4元/月</td><td>955元/月</td><td><span class="tag tag-up">↑1.6</span></td></tr>
+    </table>
+    <div class="note">
+      <strong>官方依据：</strong><br>
+      <a class="link" href="https://hrss.gd.gov.cn/zwgk/xxgkml/bmwj/qtwj/shbz/content/mpost_4789618.html" target="_blank">粤人社发〔2025〕32号</a> | 
+      <a class="link" href="https://fssi.foshan.gov.cn/gkmlpt/content/7/7137/post_7137649.html" target="_blank">佛山市2025年社会保险信息披露</a>
+    </div>
+
+    <h3>2. 医疗保险（含生育保险）<span class="tag tag-new">★ 佛山2026年改革</span></h3>
+    <p style="font-size:13px;color:#666;margin-bottom:8px;"><strong>说明：</strong>佛山2026年1月起实施新医保办法，费率结构调整。医保分统账结合与单建统筹。</p>
+
+    <table>
+      <tr><th>项目</th><th>2025年 版本</th><th>2026年 版本</th><th>变化</th></tr>
+      <tr><td>医保基数上限</td><td>9,660元</td><td>9,660元</td><td>不变</td></tr>
+      <tr><td>医保基数下限</td><td>4,830元</td><td>4,669元</td><td><span class="tag tag-down">↓161</span></td></tr>
+      <tr><td>单位费率（统账结合）</td><td>5%（医保4%+生育1%）</td><td>5.5%（医保4.5%+生育1%）</td><td><span class="tag tag-up">↑0.5%</span></td></tr>
+      <tr><td>个人费率（统账结合）</td><td>2%</td><td>2%</td><td>不变</td></tr>
+      <tr><td>单位费率（单建统筹）</td><td>5%</td><td>5.5%</td><td><span class="tag tag-up">↑0.5%</span></td></tr>
+      <tr><td>个人费率（单建统筹）</td><td>0%</td><td>0%</td><td>不变</td></tr>
+      <tr class="highlight-row"><td>个人最低缴费(统账结合)</td><td>96.6元/月</td><td>93.38元/月</td><td><span class="tag tag-down">↓3.22</span></td></tr>
+      <tr><td>退休延缴基数</td><td>8,050元</td><td>7,781元</td><td><span class="tag tag-down">↓269</span></td></tr>
+    </table>
+    <div class="note">
+      <strong>官方依据：</strong><br>
+      2026版：<a class="link" href="https://www.foshan.gov.cn/zsk?kCode=CSS00009331" target="_blank">佛山市三水区社保费缴费标准（含2026年医保新政策）</a><br>
+      2026版详情：<a class="link" href="https://www.foshan.gov.cn/zsk/?kCode=CNH00008915" target="_blank">南海区社保费缴费标准（更新至2026年1月）</a><br>
+      2025版：<a class="link" href="https://www.foshan.gov.cn/gzjg/fsylbzj/zwdt/tzgg/content/post_6238698.html" target="_blank">佛山市医保局 - 2025年度医保缴费基数通知</a><br>
+      政策依据：<a class="link" href="https://www.foshan.gov.cn/zwgk/zfxxgkml/sylbzj/gkmlpt/content/6/6238/post_6238698.html" target="_blank">佛府办〔2025〕10号 佛山市基本医疗保险参保和关系管理实施办法</a>
+    </div>
+    <div class="warn">
+      <strong>⚠ 佛山特殊提醒：</strong>佛山医保基数远低于养老基数，是全省唯一医保基数大幅低于养老基数的城市。这意味着高薪员工按实际工资缴医保的实际成本远低于养老保险！
+    </div>
+
+    <h3>3. 失业保险</h3>
+    <table>
+      <tr><th>项目</th><th>2025年(1-6月)</th><th>2025年(7-12月)</th><th>2026年</th><th>变化趋势</th></tr>
+      <tr><td>基数上限</td><td>28,770元</td><td>28,959元</td><td>31,395元</td><td><span class="tag tag-up">持续↑</span></td></tr>
+      <tr><td>基数下限</td><td>1,900元(1-2月)→2,080元(3月起)</td><td>2,080元</td><td>2,080元</td><td>已稳定</td></tr>
+      <tr><td>单位费率</td><td>0.8%</td><td>0.8%</td><td>0.8%</td><td>不变</td></tr>
+      <tr><td>个人费率</td><td>0.2%</td><td>0.2%</td><td>0.2%</td><td>不变</td></tr>
+      <tr class="highlight-row"><td>失业金标准</td><td>1,710元/月(1-2月)→1,872元/月(3月起)</td><td>1,872元/月</td><td>1,872元/月</td><td>已稳定</td></tr>
+    </table>
+    <div class="note">
+      <strong>官方依据：</strong><br>
+      <a class="link" href="https://www.foshan.gov.cn/zsk/?kCode=CNH00008915" target="_blank">南海区社保费缴费标准</a>
+    </div>
+
+    <h3>4. 工伤保险</h3>
+    <p style="font-size:13px;">八档基准费率 0.2%~1.4%，个人不缴费。自2024年1月起暂停浮动费率，暂按基准费率执行。特定人员单项工伤基数：上限27,549元/下限5,510元（2025.11-2026.06）。</p>
+
+    <h3>5. 住房公积金</h3>
+    <table>
+      <tr><th>项目</th><th>2026.07-2027.06 版本</th></tr>
+      <tr><td>基数上限</td><td>31,395元</td></tr>
+      <tr><td>基数下限</td><td>2,080元</td></tr>
+      <tr><td>单位职工缴存比例</td><td>5%-12%（1%整数倍，个人比例≥单位比例）</td></tr>
+      <tr><td>灵活就业缴存比例</td><td>10%-24%（2%整数倍）</td></tr>
+      <tr class="highlight-row"><td>月缴存额上限(双边)</td><td>7,534元</td></tr>
+      <tr class="highlight-row"><td>月缴存额下限(双边)</td><td>208元</td></tr>
+    </table>
+    <div class="note">
+      <strong>官方依据：</strong><br>
+      <a class="link" href="https://fsgjj.foshan.gov.cn/xxgk/fgzc/qtwj/content/post_7180001.html" target="_blank">佛山市住房公积金管理中心 - 2026年度缴存调整通告</a>
+    </div>
+    <div class="note"><strong>操作说明：</strong>佛山公积金年度调整须在2026年12月31日前完成。申报有误可在资金未入账时线上撤销。个人缴存比例不得低于单位缴存比例。</div>
+
+  </div>
+</div>
+
+<!-- ==================== 操作指南 ==================== -->
+<div class="ops-section" id="ops">
+  <h2>五、通用操作指南（四城通用）</h2>
+
+  <h3>5.1 单位社保开户</h3>
+  <ol class="step-list">
+    <li>取得营业执照后，系统自动完成社保登记（广东省已实现"多证合一"）；</li>
+    <li>登录<strong>广东省电子税务局</strong>（etax.guangdong.chinatax.gov.cn），以企业身份登录；</li>
+    <li>路径：【我要办税】→【税费申报及缴纳】→【社保费管理】；</li>
+    <li>首次使用需完成<strong>社保费基本信息管理</strong>中的单位信息确认与缴费核定；</li>
+    <li>绑定三方扣款协议（网签三方协议），确保扣款账户余额充足。</li>
+  </ol>
+
+  <h3>5.2 增员（新员工参保）</h3>
+  <ol class="step-list">
+    <li>登录广东省电子税务局 → 社保费管理 → <strong>社保增员登记</strong>；</li>
+    <li>录入新员工信息（姓名、身份证号、缴费工资、参保险种）；</li>
+    <li>系统自动校验，校验通过后提交；</li>
+    <li><strong>也可通过"粤税通"小程序</strong>：微信搜索"粤税通"→社保业务→增员；</li>
+    <li>增员后当月需完成<strong>社会保险费申报</strong>才能扣款。</li>
+  </ol>
+
+  <h3>5.3 减员（员工离职停保）</h3>
+  <ol class="step-list">
+    <li>登录电子税务局 → 社保费管理 → <strong>社保减员登记</strong>；</li>
+    <li>查询在册人员，勾选需减员人员，选择减员原因（如"解除劳动合同"）；</li>
+    <li>填写实际减员时间 → 校验 → 提交；</li>
+    <li><strong>注意：</strong>如当月已为该员工申报社保，需先作废申报再减员；</li>
+    <li>"粤税通"小程序也可办理减员。</li>
+  </ol>
+
+  <h3>5.4 缴费工资（基数）调整</h3>
+  <ol class="step-list">
+    <li>登录电子税务局 → 社保费管理 → <strong>缴费工资调整</strong>；</li>
+    <li>选择需调整的员工，录入新的缴费工资；</li>
+    <li>系统自动判断是否在基数上下限范围内；</li>
+    <li>每年7月为养老保险基数统一调整月，建议在此之前完成年度工资申报；</li>
+    <li>灵活就业人员通过"粤税通"【灵活就业人员社保】→【缴费基数调整】。</li>
+  </ol>
+
+  <h3>5.5 公积金操作</h3>
+  <ol class="step-list">
+    <li>各市公积金中心有独立的网上办事大厅（广州：gjj.gz.gov.cn；珠海：gjj.zhuhai.gov.cn等）；</li>
+    <li>年度调整：每年7月在公积金系统完成基数/比例调整申报；</li>
+    <li>增员/减员：公积金系统单独操作，不与社保同步；</li>
+    <li>灵活就业人员可通过各市公积金微信公众号或网上大厅办理缴存。</li>
+  </ol>
+
+  <h3>5.6 跨市转移</h3>
+  <ol class="step-list">
+    <li><strong>省内转移：</strong>广东省内四城之间社保关系转移已简化，新单位直接增员即可；</li>
+    <li><strong>养老保险：</strong>省内无需办理转移手续，退休时统一归集；跨省需通过"掌上12333"APP或国家社保平台申请；</li>
+    <li><strong>医疗保险：</strong>通过"粤医保"小程序办理省内转移；跨省需申请；</li>
+    <li><strong>公积金：</strong>通过"全国住房公积金"小程序办理异地转移接续。</li>
+  </ol>
+</div>
+
+<!-- ==================== 补充建议 ==================== -->
+<div class="supplement" id="supp">
+  <h2>六、资深社保专员补充建议</h2>
+
+  <div class="card-grid">
+    <div class="info-card">
+      <h4>🔴 1. 广州医保费率恢复——预算冲击</h4>
+      <p>2026年1月起广州医保单位费率从4.5%恢复至6%（含生育从5.35%升至6.85%），一名最低基数员工企业年增成本约<strong>1,121元</strong>。建议：</p>
+      <ul>
+        <li>提前与财务沟通2026年社保预算上调</li>
+        <li>关注是否出台新阶段性降费政策</li>
+        <li>评估灵活用工替代方案</li>
+      </ul>
+    </div>
+
+    <div class="info-card">
+      <h4>🟠 2. 佛山医保基数"洼地效应"</h4>
+      <p>佛山医保基数上限仅9,660元，远低于养老基数的27,549元。这意味着：</p>
+      <ul>
+        <li>月薪2万的员工在佛山缴医保成本远低于其他三城</li>
+        <li>高薪人群的医保待遇可能受影响（缴费基数封顶低）</li>
+        <li>跨市招聘时可作为成本优势宣传</li>
+      </ul>
+    </div>
+
+    <div class="info-card">
+      <h4>🟡 3. 四城最低工资标准与失业金</h4>
+      <p>广州最低工资2,500元，珠海/东莞/佛山均为2,080元。失业保险金=最低工资×90%：</p>
+      <ul>
+        <li>广州：2,250元/月</li>
+        <li>珠海/东莞/佛山：1,872元/月</li>
+        <li>广州高17%——跨市用工的隐性成本差异</li>
+      </ul>
+    </div>
+
+    <div class="info-card">
+      <h4>🟢 4. 医保退休年限差异</h4>
+      <ul>
+        <li><strong>广州：</strong>2014年后首次参保需累计15年+本市满10年</li>
+        <li><strong>珠海：</strong>到2029年统一为25年+本市满10年</li>
+        <li><strong>东莞：</strong>按广东省统一规定逐步调整</li>
+        <li><strong>佛山：</strong>按省规定，关注过渡期安排</li>
+      </ul>
+      <p>员工临近退休时跨市流动需特别注意医保年限能否满足退休地要求。</p>
+    </div>
+
+    <div class="info-card">
+      <h4>🔵 5. 公积金缴存策略</h4>
+      <p>四城公积金均为5%-12%区间，但：</p>
+      <ul>
+        <li>东莞灵活就业最低10%，比单位职工5%高出一倍</li>
+        <li>佛山要求个人比例≥单位比例（不能单位12%个人5%）</li>
+        <li>广州基数上限最高（41,697元），高薪人群公积金账户积累最多</li>
+        <li>公积金贷款额度与账户余额、缴存年限挂钩，提前规划</li>
+      </ul>
+    </div>
+
+    <div class="info-card">
+      <h4>🟣 6. 社保合规红线提醒</h4>
+      <ul>
+        <li><strong>禁止按最低基数全员参保：</strong>广东省已推行"社保费征缴数据比对"，税务局有个人所得税工资申报数据，低报将触发稽查</li>
+        <li><strong>禁止选择性参保：</strong>五险必须全部参加（特定人员除外）</li>
+        <li><strong>禁止公积金不缴：</strong>公积金具有强制性，违规罚款1-5万元</li>
+        <li><strong>试用期必须参保：</strong>建立劳动关系30日内办理</li>
+      </ul>
+    </div>
+
+    <div class="info-card">
+      <h4>⚪ 7. 四城企业综合成本对比（最低基数）</h4>
+      <table style="font-size:11px;">
+        <tr><th>城市</th><th>养老(单位+个人)</th><th>医保(单位+个人)</th><th>失业</th><th>工伤(最低)</th><th>公积金(最低双边)</th><th>企业最低总成本/月</th></tr>
+        <tr><td>广州</td><td>1,322.4</td><td>551.71</td><td>25</td><td>5</td><td>250</td><td><strong>≈2,154</strong></td></tr>
+        <tr><td>珠海</td><td>1,146</td><td>一档358.13</td><td>20.8</td><td>4.16</td><td>208</td><td><strong>≈1,737</strong></td></tr>
+        <tr><td>东莞</td><td>1,146</td><td>单建140.83</td><td>20.8</td><td>4.16</td><td>208</td><td><strong>≈1,520</strong></td></tr>
+        <tr><td>佛山</td><td>1,146</td><td>统账350.18</td><td>20.8</td><td>4.16</td><td>208</td><td><strong>≈1,729</strong></td></tr>
+      </table>
+      <p style="font-size:11px;color:#666;margin-top:4px;">注：以上按各市最低基数、最低比例测算，仅供横向对比参考。企业总成本含单位+个人全部缴费。</p>
+    </div>
+
+    <div class="info-card">
+      <h4>🟤 8. 灵活就业参保策略</h4>
+      <ul>
+        <li><strong>广州灵活就业：</strong>养老20% + 医保8% + 失业1%，最低月缴1,625.72元</li>
+        <li><strong>珠海灵活就业：</strong>可选择单建统筹医保（仅2.5%），大幅降低成本</li>
+        <li><strong>东莞灵活就业：</strong>医保可选统账结合无个账（4.3%）节省开支</li>
+        <li><strong>佛山灵活就业：</strong>医保仅4.5%+2%（统账结合），基数低至4,669元</li>
+        <li>所有四城均允许非本地户籍灵活就业人员参加养老保险（需就业登记证明）</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- 关键政府网站汇总 -->
+<div class="supplement">
+  <h2>附录：关键政府官方链接汇总</h2>
+  <table style="font-size:12px;">
+    <tr><th width="80">城市</th><th width="140">机构</th><th>网址</th><th>主要用途</th></tr>
+    <tr><td rowspan="4">广州</td><td>广东省人社厅</td><td><a href="https://hrss.gd.gov.cn" target="_blank">hrss.gd.gov.cn</a></td><td>养老保险省级政策</td></tr>
+    <tr><td>广州市医保局</td><td><a href="https://www.gz.gov.cn/gzjg/gzsylbzj/" target="_blank">gz.gov.cn/gzjg/gzsylbzj</a></td><td>医保缴费、待遇政策</td></tr>
+    <tr><td>广州住房公积金管理中心</td><td><a href="https://gjj.gz.gov.cn" target="_blank">gjj.gz.gov.cn</a></td><td>公积金缴存、提取、贷款</td></tr>
+    <tr><td>广东省电子税务局</td><td><a href="https://etax.guangdong.chinatax.gov.cn" target="_blank">etax.guangdong.chinatax.gov.cn</a></td><td>社保申报缴费（全省通用）</td></tr>
+    <tr><td rowspan="3">珠海</td><td>珠海市人社局</td><td><a href="https://zhrsj.zhuhai.gov.cn" target="_blank">zhrsj.zhuhai.gov.cn</a></td><td>养老保险、失业、工伤</td></tr>
+    <tr><td>珠海市医保局</td><td><a href="https://www.zhuhai.gov.cn/ylbzj/" target="_blank">zhuhai.gov.cn/ylbzj</a></td><td>医保缴费、待遇政策</td></tr>
+    <tr><td>珠海市住房公积金</td><td><a href="https://gjj.zhuhai.gov.cn" target="_blank">gjj.zhuhai.gov.cn</a></td><td>公积金缴存、提取</td></tr>
+    <tr><td rowspan="3">东莞</td><td>东莞市人社局</td><td><a href="https://dghrss.dg.gov.cn" target="_blank">dghrss.dg.gov.cn</a></td><td>养老、失业、工伤政策</td></tr>
+    <tr><td>东莞市医保局</td><td><a href="https://www.dg.gov.cn/ylbzj/" target="_blank">dg.gov.cn/ylbzj</a></td><td>医保缴费、待遇政策</td></tr>
+    <tr><td>东莞市住房公积金</td><td><a href="https://dggjj.dg.gov.cn" target="_blank">dggjj.dg.gov.cn</a></td><td>公积金缴存、提取</td></tr>
+    <tr><td rowspan="3">佛山</td><td>佛山市社保局</td><td><a href="https://fssi.foshan.gov.cn" target="_blank">fssi.foshan.gov.cn</a></td><td>社保综合信息</td></tr>
+    <tr><td>佛山市医保局</td><td><a href="https://www.foshan.gov.cn/gzjg/fsylbzj/" target="_blank">foshan.gov.cn/gzjg/fsylbzj</a></td><td>医保缴费、待遇政策</td></tr>
+    <tr><td>佛山市住房公积金</td><td><a href="https://fsgjj.foshan.gov.cn" target="_blank">fsgjj.foshan.gov.cn</a></td><td>公积金缴存、提取</td></tr>
+    <tr><td>通用</td><td>粤税通小程序</td><td>微信搜索"粤税通"</td><td>灵活就业参保、增减员</td></tr>
+    <tr><td>通用</td><td>全国住房公积金</td><td>微信搜索"全国住房公积金"</td><td>公积金异地转移</td></tr>
+    <tr><td>通用</td><td>社保咨询热线</td><td>12333（人社）/ 12366（税务）/ 12345（综合）</td><td>政策咨询</td></tr>
+  </table>
+</div>
+
+<p style="text-align:center;color:#999;font-size:12px;margin-top:20px;">
+  编制日期：2026年7月23日 | 数据来源：各级政府官方网站公开信息 | 仅供参考，以官方最新文件为准
+</p>
+
+</div>
+</body>
+</html>
